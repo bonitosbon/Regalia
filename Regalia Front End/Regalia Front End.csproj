@@ -70,6 +70,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DashboardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DashboardControl.Designer.cs">
+      <DependentUpon>DashboardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BookingControl.Designer.cs">
+      <DependentUpon>BookingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertiesControl.Designer.cs">
+      <DependentUpon>PropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FinancialControl.Designer.cs">
+      <DependentUpon>FinancialControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DashboardControl.resx">
+      <DependentUpon>DashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingControl.resx">
+      <DependentUpon>BookingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertiesControl.resx">
+      <DependentUpon>PropertiesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinancialControl.resx">
+      <DependentUpon>FinancialControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Resources\GLOW.png" />
     <EmbeddedResource Include="LoginForm.resx">
