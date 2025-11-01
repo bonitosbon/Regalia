@@ -30,6 +30,7 @@ namespace Regalia_Front_End
         // Panel References
         private Guna2ShadowPanel createAccountPnl;
         private Guna2ShadowPanel loginAccountPnl;
+        private Guna2ShadowPanel properties3Pnl;
 
         public AnimationManager(Form form, Guna2ShadowPanel createPanel, Guna2ShadowPanel loginPanel)
         {
@@ -38,28 +39,38 @@ namespace Regalia_Front_End
             loginAccountPnl = loginPanel;
         }
 
+        public void SetProperties3Panel(Guna2ShadowPanel panel)
+        {
+            properties3Pnl = panel;
+        }
+
         #region Create Account Panel Animation Methods
 
         public void StartCreateAccountAnimation()
         {
             try
             {
-                if (isCreateAccountAnimating) return;
-
-                // Stop any existing animation
+                System.Diagnostics.Debug.WriteLine("StartCreateAccountAnimation called");
+                
+                // Stop any existing animation first
                 if (createAccountAnimationTimer != null)
                 {
                     createAccountAnimationTimer.Stop();
                 }
+                
+                // Reset animation state
+                isCreateAccountAnimating = false;
+                isCreateAccountClosing = false;
 
                 // Set up for opening animation
                 isCreateAccountClosing = false;
 
-                // Calculate end position (original position)
-                createAccountEndPosition = new Point(298, 130);
+                // Calculate end position (centered on form)
+                // Use current position as end position (already centered)
+                createAccountEndPosition = createAccountPnl.Location;
 
                 // Set start position (below the visible area, same X position)
-                createAccountStartPosition = new Point(createAccountEndPosition.X, parentForm.ClientSize.Height);
+                createAccountStartPosition = new Point(createAccountEndPosition.X, parentForm.ClientSize.Height + 50);
 
                 // Reset animation
                 createAccountAnimationStep = 0;
@@ -68,7 +79,12 @@ namespace Regalia_Front_End
                 // Set initial position
                 createAccountPnl.Location = createAccountStartPosition;
                 createAccountPnl.Visible = true;
+                createAccountPnl.Show();
                 createAccountPnl.BringToFront();
+                createAccountPnl.Refresh();
+                
+                System.Diagnostics.Debug.WriteLine($"Animation - Start: {createAccountStartPosition}, End: {createAccountEndPosition}");
+                System.Diagnostics.Debug.WriteLine($"Form location set to: {createAccountPnl.Location}");
 
                 // Start the animation timer
                 if (createAccountAnimationTimer == null)
@@ -110,16 +126,16 @@ namespace Regalia_Front_End
                 createAccountAnimationStep = 0;
                 isCreateAccountAnimating = true;
 
-                // Start the animation timer with faster settings
+                // Start the animation timer
                 if (createAccountAnimationTimer == null)
                 {
                     createAccountAnimationTimer = new System.Windows.Forms.Timer();
-                    createAccountAnimationTimer.Interval = 1; // Instant for closing
+                    createAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
                     createAccountAnimationTimer.Tick += CreateAccountAnimationTimer_Tick;
                 }
                 else
                 {
-                    createAccountAnimationTimer.Interval = 1; // Instant for closing
+                    createAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
                 }
                 createAccountAnimationTimer.Start();
             }
@@ -134,17 +150,19 @@ namespace Regalia_Front_End
             try
             {
                 if (!isCreateAccountAnimating) return;
+                
+                System.Diagnostics.Debug.WriteLine($"Animation tick - Step: {createAccountAnimationStep}, Closing: {isCreateAccountClosing}");
 
                 // Use different step counts for opening vs closing
-                int totalSteps = isCreateAccountClosing ? 2 : createAccountTotalAnimationSteps; // Instant closing
+                int totalSteps = isCreateAccountClosing ? 3 : createAccountTotalAnimationSteps; // Almost instant closing
                 double progress = (double)createAccountAnimationStep / totalSteps;
                 
                 // Apply different easing for opening vs closing
                 double easedProgress;
                 if (isCreateAccountClosing)
                 {
-                    // For closing, use linear for instant movement (no trail)
-                    easedProgress = progress;
+                    // For closing, use ease-in for smooth movement (same as property forms)
+                    easedProgress = progress * progress;
                 }
                 else
                 {
@@ -156,8 +174,17 @@ namespace Regalia_Front_End
                 int currentX = createAccountStartPosition.X + (int)((createAccountEndPosition.X - createAccountStartPosition.X) * easedProgress);
                 int currentY = createAccountStartPosition.Y + (int)((createAccountEndPosition.Y - createAccountStartPosition.Y) * easedProgress);
 
-                // Update position
-                createAccountPnl.Location = new Point(currentX, currentY);
+                // Update position - handle both createAccountPnl and properties3Pnl
+                if (properties3Pnl != null && createAccountPnl != properties3Pnl)
+                {
+                    // We're animating properties3Pnl, so update it directly
+                    properties3Pnl.Location = new Point(currentX, currentY);
+                }
+                else
+                {
+                    // We're animating createAccountPnl
+                    createAccountPnl.Location = new Point(currentX, currentY);
+                }
 
                 // Increment animation step
                 createAccountAnimationStep++;
@@ -168,16 +195,31 @@ namespace Regalia_Front_End
                     createAccountAnimationTimer.Stop();
                     isCreateAccountAnimating = false;
                     
-                    if (createAccountPnl != null)
+                    // Ensure final position is exact
+                    if (properties3Pnl != null && createAccountPnl != properties3Pnl)
                     {
-                        createAccountPnl.Location = createAccountEndPosition; // Ensure final position is exact
+                        properties3Pnl.Location = createAccountEndPosition;
+                    }
+                    else if (createAccountPnl != null)
+                    {
+                        createAccountPnl.Location = createAccountEndPosition;
                     }
                     
                     // Handle completion based on whether we're opening or closing
                     if (isCreateAccountClosing)
                     {
                         // Hide the panel when closing animation completes
-                        if (createAccountPnl != null)
+                        if (properties3Pnl != null && createAccountPnl != properties3Pnl)
+                        {
+                            properties3Pnl.Visible = false;
+                            // Reset position to original for next opening
+                            int centerX = (parentForm.ClientSize.Width - properties3Pnl.Width) / 2;
+                            int centerY = (parentForm.ClientSize.Height - properties3Pnl.Height) / 2;
+                            properties3Pnl.Location = new Point(centerX, centerY);
+                            // Restore shadow
+                            properties3Pnl.ShadowDepth = 200;
+                        }
+                        else if (createAccountPnl != null)
                         {
                             createAccountPnl.Visible = false;
                             // Reset position to original for next opening
@@ -208,19 +250,23 @@ namespace Regalia_Front_End
         {
             try
             {
-                if (isLoginAccountAnimating) return;
-
-                // Stop any existing animation
+                // Stop any existing animation first
                 if (loginAccountAnimationTimer != null)
                 {
                     loginAccountAnimationTimer.Stop();
                 }
+                
+                // Reset animation state
+                isLoginAccountAnimating = false;
+                isLoginAccountClosing = false;
 
                 // Set up for opening animation
                 isLoginAccountClosing = false;
 
-                // Calculate end position (original position)
-                loginAccountEndPosition = new Point(298, 130);
+                // Calculate end position (centered on form)
+                int centerX = (parentForm.ClientSize.Width - loginAccountPnl.Width) / 2;
+                int centerY = (parentForm.ClientSize.Height - loginAccountPnl.Height) / 2;
+                loginAccountEndPosition = new Point(centerX, centerY);
 
                 // Set start position (below the visible area, same X position)
                 loginAccountStartPosition = new Point(loginAccountEndPosition.X, parentForm.ClientSize.Height);
@@ -274,16 +320,16 @@ namespace Regalia_Front_End
                 loginAccountAnimationStep = 0;
                 isLoginAccountAnimating = true;
 
-                // Start the animation timer with faster settings
+                // Start the animation timer
                 if (loginAccountAnimationTimer == null)
                 {
                     loginAccountAnimationTimer = new System.Windows.Forms.Timer();
-                    loginAccountAnimationTimer.Interval = 1; // Instant for closing
+                    loginAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
                     loginAccountAnimationTimer.Tick += LoginAccountAnimationTimer_Tick;
                 }
                 else
                 {
-                    loginAccountAnimationTimer.Interval = 1; // Instant for closing
+                    loginAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
                 }
                 loginAccountAnimationTimer.Start();
             }
@@ -300,15 +346,15 @@ namespace Regalia_Front_End
                 if (!isLoginAccountAnimating) return;
 
                 // Use different step counts for opening vs closing
-                int totalSteps = isLoginAccountClosing ? 2 : loginAccountTotalAnimationSteps; // Instant closing
+                int totalSteps = isLoginAccountClosing ? 3 : loginAccountTotalAnimationSteps; // Almost instant closing
                 double progress = (double)loginAccountAnimationStep / totalSteps;
                 
                 // Apply different easing for opening vs closing
                 double easedProgress;
                 if (isLoginAccountClosing)
                 {
-                    // For closing, use linear for instant movement (no trail)
-                    easedProgress = progress;
+                    // For closing, use ease-in for smooth movement (same as property forms)
+                    easedProgress = progress * progress;
                 }
                 else
                 {
@@ -361,6 +407,105 @@ namespace Regalia_Front_End
                 }
                 isLoginAccountAnimating = false;
                 MessageBox.Show($"Error during login animation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region Properties3 Panel Animation Methods
+
+        public void StartProperties3Animation()
+        {
+            try
+            {
+                if (properties3Pnl == null) return;
+
+                // Stop any existing animation first
+                if (createAccountAnimationTimer != null)
+                {
+                    createAccountAnimationTimer.Stop();
+                }
+                
+                // Reset animation state
+                isCreateAccountAnimating = false;
+                isCreateAccountClosing = false;
+
+                // Set up for opening animation
+                isCreateAccountClosing = false;
+
+                // Calculate end position (centered on form)
+                int centerX = (parentForm.ClientSize.Width - properties3Pnl.Width) / 2;
+                int centerY = (parentForm.ClientSize.Height - properties3Pnl.Height) / 2;
+                createAccountEndPosition = new Point(centerX, centerY);
+
+                // Set start position (below the visible area, same X position)
+                createAccountStartPosition = new Point(createAccountEndPosition.X, parentForm.ClientSize.Height);
+
+                // Reset animation
+                createAccountAnimationStep = 0;
+                isCreateAccountAnimating = true;
+
+                // Set initial position
+                properties3Pnl.Location = createAccountStartPosition;
+                properties3Pnl.Visible = true;
+                properties3Pnl.BringToFront();
+
+                // Start the animation timer
+                if (createAccountAnimationTimer == null)
+                {
+                    createAccountAnimationTimer = new System.Windows.Forms.Timer();
+                    createAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
+                    createAccountAnimationTimer.Tick += CreateAccountAnimationTimer_Tick;
+                }
+                createAccountAnimationTimer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error starting properties3 animation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void CloseProperties3()
+        {
+            try
+            {
+                if (properties3Pnl == null) return;
+
+                // Stop any existing animation first
+                if (createAccountAnimationTimer != null)
+                {
+                    createAccountAnimationTimer.Stop();
+                }
+
+                // Set up for closing animation
+                isCreateAccountClosing = true;
+
+                // Calculate start position (current position)
+                createAccountStartPosition = properties3Pnl.Location;
+
+                // Calculate end position (below the visible area, same X position)
+                createAccountEndPosition = new Point(createAccountStartPosition.X, parentForm.ClientSize.Height + 50);
+
+                // Reset animation
+                createAccountAnimationStep = 0;
+                isCreateAccountAnimating = true;
+
+                // Start the animation timer
+                if (createAccountAnimationTimer == null)
+                {
+                    createAccountAnimationTimer = new System.Windows.Forms.Timer();
+                    createAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
+                    createAccountAnimationTimer.Tick += CreateAccountAnimationTimer_Tick;
+                }
+                else
+                {
+                    createAccountAnimationTimer.Interval = 16; // ~60fps for smooth animation
+                }
+                createAccountAnimationTimer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error closing properties3 panel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -214,7 +214,7 @@
             this.createAccountPnl.Controls.Add(this.usernameTxtBox);
             this.createAccountPnl.Controls.Add(this.createAccountLbl);
             this.createAccountPnl.FillColor = System.Drawing.Color.White;
-            this.createAccountPnl.Location = new System.Drawing.Point(854, 331);
+            this.createAccountPnl.Location = new System.Drawing.Point(298, 130);
             this.createAccountPnl.Name = "createAccountPnl";
             this.createAccountPnl.ShadowColor = System.Drawing.Color.Black;
             this.createAccountPnl.ShadowDepth = 200;
