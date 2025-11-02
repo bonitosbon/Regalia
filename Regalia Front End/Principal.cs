@@ -85,7 +85,7 @@ namespace Regalia_Front_End
             propertiesControl.propertiesNext2.Click += Properties2Next_Click; // Next button in addProperties2
             propertiesControl.propertiesBack2.Click += Properties2Back_Click; // Back button in addProperties2
             propertiesControl.propertiesBack3.Click += Properties3Back_Click; // Back button in addProperties3
-            propertiesControl.propertiesNext3.Click += Properties3Next_Click; // Next button in addProperties3 (submits property then goes to page 4)
+            propertiesControl.propertiesNext3.Click += Properties3Next_Click; // Next button in addProperties3 (navigates to page 4)
             propertiesControl.propertiesBack4.Click += Properties4Back_Click; // Back button in addProperties4
             // Note: submitLoginBtn is shared between page 3 and page 4 - will handle dynamically
             propertiesControl.submitLoginBtn.Click += SubmitLoginBtn_Click; // Submit button (page 3: goes to page 4, page 4: submits front desk)
@@ -144,8 +144,9 @@ namespace Regalia_Front_End
 
         private void Properties3Next_Click(object sender, EventArgs e)
         {
-            // On page 3, submit property (adds card) then navigate to page 4
-            propertyFormManager.SubmitProperty();
+            // Navigate to page 4 without submitting property
+            // Property will be created when submitLoginBtn is clicked on page 4
+            propertyFormManager.ShowProperties4();
         }
 
         private void SubmitLoginBtn_Click(object sender, EventArgs e)

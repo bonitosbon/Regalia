@@ -114,9 +114,6 @@ namespace Regalia_Front_End
                 
                 if (navigateToPage4)
                 {
-                    MessageBox.Show("Property added successfully! Now create a front desk account.", "Success", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
                     // Navigate to page 4 (front desk account creation) instead of closing
                     // Cards will remain visible in the background behind page 4
                     ShowProperties4();

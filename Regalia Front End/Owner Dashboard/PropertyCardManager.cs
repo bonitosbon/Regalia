@@ -99,10 +99,6 @@ namespace Regalia_Front_End
                 // Force a refresh to make sure the card appears
                 propertiesControl.Refresh();
                 cardContainer.Refresh();
-                
-                // Show card count in a message box for debugging (remove this later)
-                MessageBox.Show($"Card added!\nTitle: {propertyData.Title}\nCards in container: {cardContainer.Controls.Count}\nPropertyCards list: {propertyCards.Count}\nContainer visible: {cardContainer.Visible}", 
-                    "Debug - Card Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

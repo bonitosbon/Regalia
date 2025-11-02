@@ -56,8 +56,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationManager.cs" />
-    <Compile Include="PropertyFormManager.cs" />
-    <Compile Include="ImageManager.cs" />
+    <Compile Include="Front Desk Dashboard\BookingCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front Desk Dashboard\BookingCard.Designer.cs">
+      <DependentUpon>BookingCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front Desk Dashboard\frontDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front Desk Dashboard\frontDashboard.Designer.cs">
+      <DependentUpon>frontDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalFront.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrincipalFront.Designer.cs">
+      <DependentUpon>PrincipalFront.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Owner Dashboard\PropertyFormManager.cs" />
+    <Compile Include="Owner Dashboard\ImageManager.cs" />
     <!-- Removed duplicate includes of PropertyCard and PropertyCardManager -->
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -73,47 +91,56 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DashboardControl.cs">
+    <Compile Include="Owner Dashboard\DashboardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DashboardControl.Designer.cs">
+    <Compile Include="Owner Dashboard\DashboardControl.Designer.cs">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookingControl.cs">
+    <Compile Include="Owner Dashboard\BookingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BookingControl.Designer.cs">
+    <Compile Include="Owner Dashboard\BookingControl.Designer.cs">
       <DependentUpon>BookingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertiesControl.cs">
+    <Compile Include="Owner Dashboard\PropertiesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PropertiesControl.Designer.cs">
+    <Compile Include="Owner Dashboard\PropertiesControl.Designer.cs">
       <DependentUpon>PropertiesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FinancialControl.cs">
+    <Compile Include="Owner Dashboard\FinancialControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FinancialControl.Designer.cs">
+    <Compile Include="Owner Dashboard\FinancialControl.Designer.cs">
       <DependentUpon>FinancialControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyCard.cs">
+    <Compile Include="Owner Dashboard\PropertyCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PropertyCardManager.cs" />
-    <EmbeddedResource Include="DashboardControl.resx">
+    <Compile Include="Owner Dashboard\PropertyCardManager.cs" />
+    <EmbeddedResource Include="Front Desk Dashboard\BookingCard.resx">
+      <DependentUpon>BookingCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front Desk Dashboard\frontDashboard.resx">
+      <DependentUpon>frontDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Owner Dashboard\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BookingControl.resx">
+    <EmbeddedResource Include="Owner Dashboard\BookingControl.resx">
       <DependentUpon>BookingControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PropertiesControl.resx">
+    <EmbeddedResource Include="PrincipalFront.resx">
+      <DependentUpon>PrincipalFront.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Owner Dashboard\PropertiesControl.resx">
       <DependentUpon>PropertiesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FinancialControl.resx">
+    <EmbeddedResource Include="Owner Dashboard\FinancialControl.resx">
       <DependentUpon>FinancialControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PropertyCard.resx">
+    <EmbeddedResource Include="Owner Dashboard\PropertyCard.resx">
       <DependentUpon>PropertyCard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />

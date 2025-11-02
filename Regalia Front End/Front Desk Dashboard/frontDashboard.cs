@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Regalia_Front_End
+namespace Regalia_Front_End.Front_Desk_Dashboard
 {
-    public partial class DashBoardControl : UserControl
+    public partial class frontDashboard : UserControl
     {
-        public DashBoardControl()
+        public frontDashboard()
         {
             InitializeComponent();
         }
