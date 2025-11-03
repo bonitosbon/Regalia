@@ -1,6 +1,6 @@
 ﻿namespace Regalia_Front_End.Front_Desk_Dashboard
 {
-    partial class FrontDashboardControl
+    partial class FrontBookingControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FrontBookingControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
+            this.Name = "FrontBookingControl";
+            this.Size = new System.Drawing.Size(773, 534);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

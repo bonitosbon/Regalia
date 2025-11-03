@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Regalia_Front_End.Front_Desk_Dashboard
 {
-    public partial class FrontDashboardControl : UserControl
+    public partial class FrontBookingControl : UserControl
     {
-        public FrontDashboardControl()
+        public FrontBookingControl()
         {
             InitializeComponent();
         }

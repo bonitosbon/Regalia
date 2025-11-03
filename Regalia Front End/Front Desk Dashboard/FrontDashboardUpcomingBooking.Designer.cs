@@ -28,10 +28,88 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.frontBookingDate = new System.Windows.Forms.Label();
+            this.frontBookingIcon = new System.Windows.Forms.Label();
+            this.frontUnitName = new System.Windows.Forms.Label();
+            this.frontBookingName = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.TargetControl = this;
+            // 
+            // frontBookingDate
+            // 
+            this.frontBookingDate.AutoSize = true;
+            this.frontBookingDate.BackColor = System.Drawing.Color.Transparent;
+            this.frontBookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frontBookingDate.ForeColor = System.Drawing.Color.White;
+            this.frontBookingDate.Location = new System.Drawing.Point(212, 38);
+            this.frontBookingDate.Name = "frontBookingDate";
+            this.frontBookingDate.Size = new System.Drawing.Size(39, 18);
+            this.frontBookingDate.TabIndex = 1;
+            this.frontBookingDate.Text = "Date";
+            // 
+            // frontBookingIcon
+            // 
+            this.frontBookingIcon.AutoSize = true;
+            this.frontBookingIcon.BackColor = System.Drawing.Color.Transparent;
+            this.frontBookingIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frontBookingIcon.ForeColor = System.Drawing.Color.White;
+            this.frontBookingIcon.Location = new System.Drawing.Point(187, 38);
+            this.frontBookingIcon.Name = "frontBookingIcon";
+            this.frontBookingIcon.Size = new System.Drawing.Size(25, 18);
+            this.frontBookingIcon.TabIndex = 2;
+            this.frontBookingIcon.Text = "📅";
+            // 
+            // frontUnitName
+            // 
+            this.frontUnitName.AutoSize = true;
+            this.frontUnitName.BackColor = System.Drawing.Color.Transparent;
+            this.frontUnitName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frontUnitName.ForeColor = System.Drawing.Color.White;
+            this.frontUnitName.Location = new System.Drawing.Point(33, 51);
+            this.frontUnitName.Name = "frontUnitName";
+            this.frontUnitName.Size = new System.Drawing.Size(46, 18);
+            this.frontUnitName.TabIndex = 3;
+            this.frontUnitName.Text = "Unit #";
+            // 
+            // frontBookingName
+            // 
+            this.frontBookingName.AutoSize = true;
+            this.frontBookingName.BackColor = System.Drawing.Color.Transparent;
+            this.frontBookingName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frontBookingName.ForeColor = System.Drawing.Color.White;
+            this.frontBookingName.Location = new System.Drawing.Point(31, 17);
+            this.frontBookingName.Name = "frontBookingName";
+            this.frontBookingName.Size = new System.Drawing.Size(72, 25);
+            this.frontBookingName.TabIndex = 4;
+            this.frontBookingName.Text = "Name";
+            // 
+            // FrontDashboardUpcomingBooking
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.frontBookingDate);
+            this.Controls.Add(this.frontBookingIcon);
+            this.Controls.Add(this.frontUnitName);
+            this.Controls.Add(this.frontBookingName);
+            this.Name = "FrontDashboardUpcomingBooking";
+            this.Size = new System.Drawing.Size(671, 95);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private System.Windows.Forms.Label frontBookingDate;
+        private System.Windows.Forms.Label frontBookingIcon;
+        private System.Windows.Forms.Label frontUnitName;
+        private System.Windows.Forms.Label frontBookingName;
     }
 }

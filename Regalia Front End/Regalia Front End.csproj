@@ -68,6 +68,30 @@
     <Compile Include="Front Desk Dashboard\frontDashboard.Designer.cs">
       <DependentUpon>frontDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front Desk Dashboard\FrontBookingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front Desk Dashboard\FrontBookingControl.Designer.cs">
+      <DependentUpon>FrontBookingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front Desk Dashboard\FrontDashboardUpcomingBooking.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front Desk Dashboard\FrontDashboardUpcomingBooking.Designer.cs">
+      <DependentUpon>FrontDashboardUpcomingBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Owner Dashboard\BookingControlCards.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Owner Dashboard\BookingControlCards.Designer.cs">
+      <DependentUpon>BookingControlCards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Owner Dashboard\PropertiesUpdateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Owner Dashboard\PropertiesUpdateControl.Designer.cs">
+      <DependentUpon>PropertiesUpdateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrincipalFront.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,14 +146,26 @@
     <EmbeddedResource Include="Front Desk Dashboard\BookingCard.resx">
       <DependentUpon>BookingCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Front Desk Dashboard\FrontBookingControl.resx">
+      <DependentUpon>FrontBookingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Front Desk Dashboard\frontDashboard.resx">
       <DependentUpon>frontDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front Desk Dashboard\FrontDashboardUpcomingBooking.resx">
+      <DependentUpon>FrontDashboardUpcomingBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Owner Dashboard\BookingControlCards.resx">
+      <DependentUpon>BookingControlCards.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Owner Dashboard\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Owner Dashboard\BookingControl.resx">
       <DependentUpon>BookingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Owner Dashboard\PropertiesUpdateControl.resx">
+      <DependentUpon>PropertiesUpdateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrincipalFront.resx">
       <DependentUpon>PrincipalFront.cs</DependentUpon>
