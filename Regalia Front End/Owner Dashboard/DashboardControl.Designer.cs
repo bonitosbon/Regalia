@@ -30,7 +30,7 @@
         {
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.propertyStatusOver = new Guna.UI2.WinForms.Guna2Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,9 +39,11 @@
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
+            this.totalProperty = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.guna2Panel1.SuspendLayout();
-            this.guna2Panel2.SuspendLayout();
+            this.propertyStatusOver.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
@@ -63,34 +65,35 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(16, 23);
+            this.label5.Location = new System.Drawing.Point(17, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(214, 32);
+            this.label5.Size = new System.Drawing.Size(137, 22);
             this.label5.TabIndex = 0;
             this.label5.Text = "Revenue Graph";
             // 
-            // guna2Panel2
+            // propertyStatusOver
             // 
-            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel2.BorderRadius = 10;
-            this.guna2Panel2.Controls.Add(this.label6);
-            this.guna2Panel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel2.Location = new System.Drawing.Point(496, 193);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(277, 327);
-            this.guna2Panel2.TabIndex = 1;
+            this.propertyStatusOver.AutoScroll = true;
+            this.propertyStatusOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.propertyStatusOver.BorderRadius = 10;
+            this.propertyStatusOver.Controls.Add(this.label6);
+            this.propertyStatusOver.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.propertyStatusOver.Location = new System.Drawing.Point(496, 193);
+            this.propertyStatusOver.Name = "propertyStatusOver";
+            this.propertyStatusOver.Size = new System.Drawing.Size(277, 327);
+            this.propertyStatusOver.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(5, 23);
+            this.label6.Location = new System.Drawing.Point(12, 10);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(269, 32);
+            this.label6.Size = new System.Drawing.Size(170, 22);
             this.label6.TabIndex = 0;
             this.label6.Text = "Available Properties";
             // 
@@ -108,9 +111,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 14);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(57, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 16);
+            this.label1.Size = new System.Drawing.Size(54, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "text 1";
             // 
@@ -158,7 +163,9 @@
             // 
             this.guna2Panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.guna2Panel6.BorderRadius = 10;
+            this.guna2Panel6.Controls.Add(this.totalProperty);
             this.guna2Panel6.Controls.Add(this.label4);
+            this.guna2Panel6.Controls.Add(this.label7);
             this.guna2Panel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.guna2Panel6.Location = new System.Drawing.Point(609, 55);
             this.guna2Panel6.Name = "guna2Panel6";
@@ -166,14 +173,40 @@
             this.guna2Panel6.TabIndex = 5;
             this.guna2Panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel6_Paint);
             // 
+            // totalProperty
+            // 
+            this.totalProperty.AutoSize = true;
+            this.totalProperty.BackColor = System.Drawing.Color.Transparent;
+            this.totalProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalProperty.ForeColor = System.Drawing.Color.White;
+            this.totalProperty.Location = new System.Drawing.Point(86, 30);
+            this.totalProperty.Name = "totalProperty";
+            this.totalProperty.Size = new System.Drawing.Size(31, 32);
+            this.totalProperty.TabIndex = 1;
+            this.totalProperty.Text = "1";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 18);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.Color.Gray;
+            this.label4.Location = new System.Drawing.Point(58, 14);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 16);
+            this.label4.Size = new System.Drawing.Size(103, 16);
             this.label4.TabIndex = 0;
-            this.label4.Text = "text5";
+            this.label4.Text = "Total Properties";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(3, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 54);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "🏢";
             // 
             // DashBoardControl
             // 
@@ -184,14 +217,14 @@
             this.Controls.Add(this.guna2Panel5);
             this.Controls.Add(this.guna2Panel4);
             this.Controls.Add(this.guna2Panel3);
-            this.Controls.Add(this.guna2Panel2);
+            this.Controls.Add(this.propertyStatusOver);
             this.Controls.Add(this.guna2Panel1);
             this.Name = "DashBoardControl";
             this.Size = new System.Drawing.Size(802, 536);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
-            this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
+            this.propertyStatusOver.ResumeLayout(false);
+            this.propertyStatusOver.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel3.PerformLayout();
             this.guna2Panel4.ResumeLayout(false);
@@ -207,7 +240,7 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        public Guna.UI2.WinForms.Guna2Panel propertyStatusOver;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
@@ -218,5 +251,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label totalProperty;
+        private System.Windows.Forms.Label label7;
     }
 }

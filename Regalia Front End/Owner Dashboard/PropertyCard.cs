@@ -14,6 +14,7 @@ namespace Regalia_Front_End
         private Guna2Elipse guna2Elipse1;
         private System.ComponentModel.IContainer components;
         private Label statusLbl;
+        private bool isMouseDown = false;
         #endregion
 
         #region Public Properties
@@ -30,8 +31,32 @@ namespace Regalia_Front_End
         }
         public string Status 
         { 
-            get => statusLbl.Text; 
-            set => statusLbl.Text = value ?? "Available"; 
+            get => statusLbl?.Text ?? "Available"; 
+            set 
+            {
+                if (statusLbl != null)
+                {
+                    string status = value ?? "Available";
+                    statusLbl.Text = status;
+                    
+                    // Set color based on status
+                    switch (status.ToLower())
+                    {
+                        case "available":
+                            statusLbl.ForeColor = Color.FromArgb(66, 133, 244); // Blue
+                            break;
+                        case "maintenance":
+                            statusLbl.ForeColor = Color.FromArgb(255, 193, 7); // Yellow/Gold
+                            break;
+                        case "occupied":
+                            statusLbl.ForeColor = Color.FromArgb(244, 67, 54); // Red
+                            break;
+                        default:
+                            statusLbl.ForeColor = Color.FromArgb(230, 245, 244); // Default color
+                            break;
+                    }
+                }
+            }
         }
         #endregion
 
@@ -41,6 +66,23 @@ namespace Regalia_Front_End
             PropertyData = data ?? throw new ArgumentNullException(nameof(data));
             InitializeComponent();
             LoadPropertyData();
+            // Wire up clicks after control is fully loaded
+            this.Load += (s, e) => WireUpChildControlClicks();
+            // Also wire immediately in case Load already fired
+            WireUpChildControlClicks();
+            
+            // Add mouse events to verify PropertyCard is receiving mouse messages
+            this.MouseEnter += (s, e) => {
+                System.Diagnostics.Debug.WriteLine($"PropertyCard MouseEnter - {PropertyData?.Title}");
+                this.Cursor = Cursors.Hand;
+            };
+            this.MouseLeave += (s, e) => {
+                System.Diagnostics.Debug.WriteLine($"PropertyCard MouseLeave - {PropertyData?.Title}");
+                this.Cursor = Cursors.Default;
+            };
+            this.MouseDown += (s, e) => {
+                System.Diagnostics.Debug.WriteLine($"PropertyCard MouseDown - {PropertyData?.Title} at {e.Location}");
+            };
         }
         #endregion
 
@@ -92,12 +134,133 @@ namespace Regalia_Front_End
             // Load first image if available
             SetImage(PropertyData.Image1Path);
         }
+
+        private void WireUpChildControlClicks()
+        {
+            // Make all child controls propagate click events to parent
+            // This ensures the entire card is clickable, not just empty spaces
+            foreach (Control control in this.Controls)
+            {
+                System.Diagnostics.Debug.WriteLine($"Wiring up click events for control: {control.Name} ({control.GetType().Name})");
+                
+                // Wire up all mouse events
+                control.MouseDown += ChildControl_MouseDown;
+                control.MouseUp += ChildControl_MouseUp;
+                control.MouseClick += ChildControl_MouseClick;
+                control.Click += ChildControl_Click;
+                control.DoubleClick += ChildControl_DoubleClick;
+                control.MouseDoubleClick += ChildControl_MouseDoubleClick;
+                
+                // Set cursor to hand on child controls too
+                control.Cursor = Cursors.Hand;
+                
+                // Special handling for PictureBox - make sure it's clickable
+                if (control is Guna.UI2.WinForms.Guna2PictureBox pictureBox)
+                {
+                    pictureBox.Cursor = Cursors.Hand;
+                    // Make sure PictureBox events are wired
+                    pictureBox.MouseClick += (s, args) => {
+                        System.Diagnostics.Debug.WriteLine($"Guna2PictureBox MouseClick event triggered");
+                        ChildControl_MouseClick(s, args);
+                    };
+                }
+            }
+            
+            // Also handle mouse events at the control level
+            this.MouseDown += PropertyCard_MouseDown;
+            this.MouseUp += PropertyCard_MouseUp;
+            
+            System.Diagnostics.Debug.WriteLine($"PropertyCard click events wired. Total child controls: {this.Controls.Count}");
+        }
+
+        private void PropertyCard_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Handle mouse down on the card itself
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = true;
+            }
+        }
+
+        private void PropertyCard_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Handle mouse up - trigger click if mouse was down
+            if (isMouseDown && e.Button == MouseButtons.Left)
+            {
+                isMouseDown = false;
+                System.Diagnostics.Debug.WriteLine($"PropertyCard_MouseUp triggered click for card: {PropertyData?.Title}");
+                PropertyCard_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void ChildControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Stop event from bubbling and trigger our click
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = true;
+            }
+        }
+
+        private void ChildControl_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Trigger click when mouse is released
+            if (isMouseDown && e.Button == MouseButtons.Left)
+            {
+                isMouseDown = false;
+                System.Diagnostics.Debug.WriteLine($"ChildControl_MouseUp triggered click from: {((Control)sender).Name}");
+                PropertyCard_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void ChildControl_Click(object sender, EventArgs e)
+        {
+            // Propagate click to parent card
+            System.Diagnostics.Debug.WriteLine($"ChildControl_Click triggered from: {((Control)sender).Name}");
+            PropertyCard_Click(this, e);
+        }
+
+        private void ChildControl_DoubleClick(object sender, EventArgs e)
+        {
+            // Propagate double click to parent card
+            PropertyCard_DoubleClick(this, e);
+        }
+
+        private void ChildControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Propagate mouse click to parent card
+            PropertyCard_Click(this, EventArgs.Empty);
+        }
+
+        private void ChildControl_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // Propagate mouse double click to parent card
+            PropertyCard_DoubleClick(this, EventArgs.Empty);
+        }
         #endregion
 
         #region Event Handlers
         private void PropertyCard_Click(object sender, EventArgs e)
         {
-            OnCardClicked?.Invoke(this, PropertyData);
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"PropertyCard_Click triggered for card: {PropertyData?.Title}");
+                if (OnCardClicked != null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"OnCardClicked has {OnCardClicked.GetInvocationList().Length} subscribers");
+                    OnCardClicked?.Invoke(this, PropertyData);
+                    System.Diagnostics.Debug.WriteLine("OnCardClicked invoked successfully");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("OnCardClicked is NULL - event not wired!");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ERROR in PropertyCard_Click: {ex.Message}\n{ex.StackTrace}");
+                MessageBox.Show($"Error handling card click: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PropertyCard_DoubleClick(object sender, EventArgs e)
@@ -182,9 +345,13 @@ namespace Regalia_Front_End
             this.Controls.Add(this.guna2PictureBox1);
             this.Name = "PropertyCard";
             this.Size = new System.Drawing.Size(250, 344);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SetStyle(ControlStyles.StandardClick | ControlStyles.StandardDoubleClick, true);
             this.Load += new System.EventHandler(this.PropertyCard_Load);
             this.Click += new System.EventHandler(this.PropertyCard_Click);
             this.DoubleClick += new System.EventHandler(this.PropertyCard_DoubleClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PropertyCard_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PropertyCard_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -201,7 +368,8 @@ namespace Regalia_Front_End
 
         private void PropertyCard_Load(object sender, EventArgs e)
         {
-
+            // Ensure click events are wired when control loads
+            WireUpChildControlClicks();
         }
     }
 

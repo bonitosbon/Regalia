@@ -72,14 +72,49 @@ namespace Regalia_Front_End
                 cardContainer.Visible = true;
                 cardContainer.Show();
                 
-                // Keep container behind addProperties panels, but ensure it's visible
-                // Cards should stay behind the form overlays
-                // Make sure containerPanel (which holds addProperties) doesn't cover cards
-                if (propertiesControl.containerPanel != null && propertiesControl.containerPanel.Visible)
+                // CRITICAL: FORCE REMOVE containerPanel - it's blocking all clicks!
+                if (propertiesControl.containerPanel != null)
                 {
-                    // If containerPanel is visible, cards will be behind it (which is correct for overlays)
-                    // But we want cards visible when no overlay is shown
-                    cardContainer.SendToBack();
+                    if (propertiesControl.Controls.Contains(propertiesControl.containerPanel))
+                    {
+                        System.Diagnostics.Debug.WriteLine("FORCE REMOVING containerPanel from Controls NOW!");
+                        propertiesControl.Controls.Remove(propertiesControl.containerPanel);
+                        propertiesControl.containerPanel.Enabled = false;
+                        propertiesControl.containerPanel.Visible = false;
+                    }
+                }
+                
+                // ALWAYS bring cardContainer to front so cards can receive clicks
+                cardContainer.BringToFront();
+                
+                // Set cardContainer properties to ensure it can receive mouse events
+                cardContainer.Enabled = true;
+                cardContainer.TabStop = false;
+                
+                // Debug: Check cardContainer position and size
+                System.Diagnostics.Debug.WriteLine($"CardContainer - Location: {cardContainer.Location}, Size: {cardContainer.Size}, Bounds: {cardContainer.Bounds}, Parent: {cardContainer.Parent?.Name}");
+                System.Diagnostics.Debug.WriteLine($"NewCard - Location: {newCard.Location}, Size: {newCard.Size}, Bounds: {newCard.Bounds}, Parent: {newCard.Parent?.Name}");
+                System.Diagnostics.Debug.WriteLine($"PropertiesControl - Bounds: {propertiesControl.Bounds}, ClientSize: {propertiesControl.ClientSize}");
+                
+                // Check all controls in PropertiesControl
+                System.Diagnostics.Debug.WriteLine($"PropertiesControl has {propertiesControl.Controls.Count} controls:");
+                foreach (Control ctrl in propertiesControl.Controls)
+                {
+                    System.Diagnostics.Debug.WriteLine($"  - {ctrl.Name ?? "(no name)"} ({ctrl.GetType().Name}) - Location: {ctrl.Location}, Size: {ctrl.Size}, Visible: {ctrl.Visible}, Enabled: {ctrl.Enabled}, Dock: {ctrl.Dock}");
+                }
+                
+                // CRITICAL CHECK: Is containerPanel still blocking?
+                if (propertiesControl.containerPanel != null)
+                {
+                    bool isInControls = propertiesControl.Controls.Contains(propertiesControl.containerPanel);
+                    System.Diagnostics.Debug.WriteLine($"CRITICAL: containerPanel still in Controls: {isInControls}, Enabled: {propertiesControl.containerPanel.Enabled}, Visible: {propertiesControl.containerPanel.Visible}");
+                    if (isInControls)
+                    {
+                        System.Diagnostics.Debug.WriteLine("ERROR: containerPanel is still in Controls collection! This will block all clicks!");
+                        // Force remove it again
+                        propertiesControl.Controls.Remove(propertiesControl.containerPanel);
+                        System.Diagnostics.Debug.WriteLine("Force removed containerPanel again. New count: " + propertiesControl.Controls.Count);
+                    }
                 }
                 
                 // But bring the new card to front within its container
@@ -166,6 +201,29 @@ namespace Regalia_Front_End
         {
             return new List<PropertyCard>(propertyCards);
         }
+
+        public void BringCardContainerToFront()
+        {
+            if (cardContainer != null)
+            {
+                // CRITICAL: Remove containerPanel from Controls to prevent it from blocking clicks
+                if (propertiesControl.containerPanel != null)
+                {
+                    if (propertiesControl.Controls.Contains(propertiesControl.containerPanel))
+                    {
+                        System.Diagnostics.Debug.WriteLine("BringCardContainerToFront: Removing containerPanel from Controls");
+                        propertiesControl.Controls.Remove(propertiesControl.containerPanel);
+                    }
+                    propertiesControl.containerPanel.Enabled = false;
+                    propertiesControl.containerPanel.Visible = false;
+                }
+                
+                // Bring cardContainer to front and ensure it's enabled
+                cardContainer.Enabled = true;
+                cardContainer.BringToFront();
+                System.Diagnostics.Debug.WriteLine($"BringCardContainerToFront: cardContainer brought to front, Enabled: {cardContainer.Enabled}");
+            }
+        }
         #endregion
 
         #region Private Methods
@@ -181,18 +239,41 @@ namespace Regalia_Front_End
                 Padding = new Padding(CARD_SPACING),
                 BackColor = Color.Transparent,
                 Margin = new Padding(0),
-                Visible = true
+                Visible = true,
+                Enabled = true,
+                TabStop = false,
+                Cursor = Cursors.Default
             };
+            
+            // Add mouse events to verify cardContainer is receiving mouse messages
+            cardContainer.MouseEnter += (s, e) => System.Diagnostics.Debug.WriteLine("cardContainer MouseEnter");
+            cardContainer.MouseLeave += (s, e) => System.Diagnostics.Debug.WriteLine("cardContainer MouseLeave");
+            cardContainer.MouseClick += (s, e) => System.Diagnostics.Debug.WriteLine($"cardContainer MouseClick at {e.Location}");
+            cardContainer.MouseDown += (s, e) => System.Diagnostics.Debug.WriteLine($"cardContainer MouseDown at {e.Location}");
 
+            // CRITICAL: Disable containerPanel FIRST before adding cardContainer
+            if (propertiesControl.containerPanel != null)
+            {
+                propertiesControl.containerPanel.Enabled = false;
+                propertiesControl.containerPanel.TabStop = false;
+                // Send containerPanel to back
+                propertiesControl.containerPanel.SendToBack();
+            }
+            
             // Add card container to PropertiesControl
-            // Make sure it's behind the containerPanel (which has addProperties forms)
             propertiesControl.Controls.Add(cardContainer);
             
-            // Send to back so cards appear behind addProperties panels
-            // But make sure containerPanel stays behind cards by ensuring proper Z-order
-            cardContainer.SendToBack();
+            // CRITICAL: Register cardContainer with PropertiesControl so it can forward clicks
+            propertiesControl.RegisterCardContainer(cardContainer);
             
-            System.Diagnostics.Debug.WriteLine($"CardContainer initialized and added to PropertiesControl. Controls count: {propertiesControl.Controls.Count}");
+            // CRITICAL: Bring cardContainer to front IMMEDIATELY after adding
+            cardContainer.BringToFront();
+            
+            // Also set TabIndex and ensure it can receive focus
+            cardContainer.TabIndex = 1;
+            cardContainer.TabStop = true;
+            
+            System.Diagnostics.Debug.WriteLine($"CardContainer initialized - Added to PropertiesControl, brought to front. containerPanel Enabled: {propertiesControl.containerPanel?.Enabled}, Controls count: {propertiesControl.Controls.Count}");
         }
 
         private PropertyCard CreatePropertyCard(PropertyData propertyData)
@@ -213,8 +294,26 @@ namespace Regalia_Front_End
 
         private void PropertyCard_OnCardClicked(object sender, PropertyData propertyData)
         {
-            // Handle single click - could show property details
-            OnPropertyCardClicked?.Invoke(sender, propertyData);
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"PropertyCard_OnCardClicked in PropertyCardManager - Property: {propertyData?.Title}");
+                // Handle single click - could show property details
+                if (OnPropertyCardClicked != null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"OnPropertyCardClicked has {OnPropertyCardClicked.GetInvocationList().Length} subscribers");
+                    OnPropertyCardClicked?.Invoke(sender, propertyData);
+                    System.Diagnostics.Debug.WriteLine("OnPropertyCardClicked invoked successfully");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("OnPropertyCardClicked is NULL - event not wired in Principal!");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ERROR in PropertyCard_OnCardClicked: {ex.Message}\n{ex.StackTrace}");
+                MessageBox.Show($"Error in card manager: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PropertyCard_OnCardDoubleClicked(object sender, PropertyData propertyData)

@@ -9,8 +9,9 @@ namespace Regalia_Front_End
     {
         private Form parentForm;
         private PropertiesControl propertiesControl;
-        private PropertyCardManager cardManager;
+        public PropertyCardManager cardManager;
         private ImageManager imageManager;
+        private PropertyStatusCardManager statusCardManager;
         private System.Windows.Forms.Timer animationTimer;
         private bool isAnimating = false;
         private bool isClosing = false;
@@ -20,12 +21,13 @@ namespace Regalia_Front_End
         private Point endPosition;
         private Guna2ShadowPanel currentForm;
 
-        public PropertyFormManager(Form parent, PropertiesControl propertiesCtrl, ImageManager imgManager)
+        public PropertyFormManager(Form parent, PropertiesControl propertiesCtrl, ImageManager imgManager, PropertyStatusCardManager statusCardMgr = null)
         {
             parentForm = parent;
             propertiesControl = propertiesCtrl;
             imageManager = imgManager;
             cardManager = new PropertyCardManager(propertiesCtrl);
+            statusCardManager = statusCardMgr;
         }
 
         #region Public Methods
@@ -104,6 +106,13 @@ namespace Regalia_Front_End
                 
                 System.Diagnostics.Debug.WriteLine("AddPropertyCard completed");
                 
+                // Add property status card to dashboard
+                if (statusCardManager != null)
+                {
+                    statusCardManager.AddPropertyStatusCard(propertyData.Title, propertyData.Location);
+                    System.Diagnostics.Debug.WriteLine($"PropertyStatusCard added: {propertyData.Title} - {propertyData.Location}");
+                }
+                
                 // Ensure PropertiesControl is visible so cards show
                 propertiesControl.Visible = true;
                 propertiesControl.Show();
@@ -164,13 +173,16 @@ namespace Regalia_Front_End
             PropertyData data = new PropertyData();
             
             // Collect data from addProperties1 (basic info)
-            data.Title = propertiesControl.guna2TextBox1.Text?.Trim();
-            data.Price = propertiesControl.guna2TextBox2.Text?.Trim();
-            data.Location = propertiesControl.guna2ComboBox1.SelectedItem?.ToString() ?? propertiesControl.guna2ComboBox1.Text?.Trim();
+            data.Title = propertiesControl.addUsernameTxt.Text?.Trim(); // Unit Name/No.
+            data.Price = propertiesControl.addPriceTxt.Text?.Trim(); // Price
+            data.Location = propertiesControl.addLocationTxt.Text?.Trim(); // Location
+            
+            // Room Type from combo box (if needed)
+            string roomType = propertiesControl.addTypeCmb.SelectedItem?.ToString() ?? propertiesControl.addTypeCmb.Text?.Trim();
             
             // Collect data from addProperties2 (additional details)
-            data.Bedrooms = propertiesControl.guna2TextBox8.Text?.Trim();
-            data.Bathrooms = propertiesControl.guna2TextBox9.Text?.Trim();
+            data.Bedrooms = propertiesControl.addRulesTxt.Text?.Trim(); // Rules (Bedrooms field)
+            data.Bathrooms = propertiesControl.addDescTxt.Text?.Trim(); // Description (Bathrooms field)
             
             // Collect image paths from ImageManager
             data.Image1Path = imageManager.GetImagePath(1);
@@ -187,18 +199,17 @@ namespace Regalia_Front_End
         private void ClearFormData()
         {
             // Clear addProperties1 fields
-            propertiesControl.guna2TextBox1.Text = "";
-            propertiesControl.guna2TextBox2.Text = "";
-            propertiesControl.guna2ComboBox1.SelectedIndex = -1;
-            propertiesControl.guna2ComboBox1.Text = "";
+            propertiesControl.addUsernameTxt.Text = ""; // Unit Name/No.
+            propertiesControl.addLocationTxt.Text = ""; // Location
+            propertiesControl.addPriceTxt.Text = ""; // Price
+            propertiesControl.addTypeCmb.SelectedIndex = -1; // Room Type
+            propertiesControl.addTypeCmb.Text = "";
+            propertiesControl.addInTxt.Text = ""; // Check-in
+            propertiesControl.addOutTxt.Text = ""; // Check-out
             
             // Clear addProperties2 fields
-            propertiesControl.guna2TextBox8.Text = "";
-            propertiesControl.guna2TextBox9.Text = "";
-            
-            // Clear addProperties3 fields (if any)
-            propertiesControl.guna2TextBox3.Text = "";
-            propertiesControl.guna2TextBox4.Text = "";
+            propertiesControl.addDescTxt.Text = ""; // Description
+            propertiesControl.addRulesTxt.Text = ""; // Rules
             
             // Clear images using ImageManager
             imageManager.ClearImage(1);
@@ -227,6 +238,14 @@ namespace Regalia_Front_End
             currentForm = form;
             isAnimating = true;
             isClosing = false;
+
+            // Enable and restore containerPanel so forms can be shown
+            if (propertiesControl.containerPanel != null)
+            {
+                propertiesControl.RestoreContainerPanelPosition();
+                propertiesControl.containerPanel.Enabled = true;
+                propertiesControl.containerPanel.Visible = true;
+            }
 
             // Calculate positions
             int centerX = (parentForm.ClientSize.Width - form.Width) / 2;
@@ -319,6 +338,27 @@ namespace Regalia_Front_End
                     int centerX = (parentForm.ClientSize.Width - currentForm.Width) / 2;
                     int centerY = (parentForm.ClientSize.Height - currentForm.Height) / 2;
                     currentForm.Location = new Point(centerX, centerY);
+                    
+                    // CRITICAL: Move containerPanel out of way when form is closed so cards can be clicked
+                    if (propertiesControl.containerPanel != null)
+                    {
+                        // Force remove from Controls collection so it cannot intercept mouse events
+                        if (propertiesControl.Controls.Contains(propertiesControl.containerPanel))
+                        {
+                            System.Diagnostics.Debug.WriteLine("HideFormWithAnimation: Removing containerPanel from Controls");
+                            propertiesControl.Controls.Remove(propertiesControl.containerPanel);
+                        }
+                        propertiesControl.containerPanel.Enabled = false;
+                        propertiesControl.containerPanel.Visible = false;
+                        propertiesControl.MoveContainerPanelOutOfWay();
+                    }
+                    
+                    // Bring cardContainer to front so cards are clickable
+                    if (cardManager != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("HideFormWithAnimation: Calling BringCardContainerToFront");
+                        cardManager.BringCardContainerToFront();
+                    }
                 }
                 else
                 {

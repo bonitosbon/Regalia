@@ -261,6 +261,7 @@
             this.submitCreateBtn.Size = new System.Drawing.Size(216, 40);
             this.submitCreateBtn.TabIndex = 6;
             this.submitCreateBtn.Text = "Create Account";
+            this.submitCreateBtn.Click += new System.EventHandler(this.submitCreateBtn_Click);
             // 
             // guna2CheckBox1
             // 
@@ -509,7 +510,7 @@
             this.loginUsernameTxtBox.Location = new System.Drawing.Point(21, 74);
             this.loginUsernameTxtBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.loginUsernameTxtBox.Name = "loginUsernameTxtBox";
-            this.loginUsernameTxtBox.PlaceholderText = "Enter Username";
+            this.loginUsernameTxtBox.PlaceholderText = "Username or Email";
             this.loginUsernameTxtBox.SelectedText = "";
             this.loginUsernameTxtBox.Size = new System.Drawing.Size(336, 48);
             this.loginUsernameTxtBox.TabIndex = 1;
