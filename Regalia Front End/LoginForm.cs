@@ -23,6 +23,29 @@ namespace Regalia_Front_End
             InitializeComponent();
             // Initialize the animation manager with the panels
             animationManager = new AnimationManager(this, createAccountPnl, loginAccountPnl);
+
+            // Initialize password fields with masking enabled by default
+            InitializePasswordFields();
+        }
+
+        private void InitializePasswordFields()
+        {
+            // Set password masking for all password fields
+            try
+            {
+                loginPasswordTxtBox.PasswordChar = '*';
+                loginPasswordTxtBox.UseSystemPasswordChar = false;
+
+                passwordTxtBox.PasswordChar = '*';
+                passwordTxtBox.UseSystemPasswordChar = false;
+
+                confirmPwdTxtBox.PasswordChar = '*';
+                confirmPwdTxtBox.UseSystemPasswordChar = false;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error initializing password fields: {ex.Message}");
+            }
         }
 
         private void guna2PictureBox2_Click(object sender, EventArgs e)
@@ -96,7 +119,50 @@ namespace Regalia_Front_End
 
         private void guna2CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
+            // Toggle password visibility for both password fields in create account panel
+            try
+            {
+                // Store current text to preserve it during property change
+                string passwordText = passwordTxtBox.Text;
+                string confirmText = confirmPwdTxtBox.Text;
+                int passwordSelectionStart = passwordTxtBox.SelectionStart;
+                int confirmSelectionStart = confirmPwdTxtBox.SelectionStart;
 
+                if (guna2CheckBox1.Checked)
+                {
+                    // Show passwords - remove masking
+                    passwordTxtBox.PasswordChar = '\0';
+                    passwordTxtBox.UseSystemPasswordChar = false;
+                    confirmPwdTxtBox.PasswordChar = '\0';
+                    confirmPwdTxtBox.UseSystemPasswordChar = false;
+                }
+                else
+                {
+                    // Hide passwords - use asterisk for masking
+                    passwordTxtBox.PasswordChar = '*';
+                    passwordTxtBox.UseSystemPasswordChar = false;
+                    confirmPwdTxtBox.PasswordChar = '*';
+                    confirmPwdTxtBox.UseSystemPasswordChar = false;
+                }
+
+                // Restore text and selection
+                passwordTxtBox.Text = passwordText;
+                passwordTxtBox.SelectionStart = passwordSelectionStart;
+                confirmPwdTxtBox.Text = confirmText;
+                confirmPwdTxtBox.SelectionStart = confirmSelectionStart;
+
+                // Force update display using multiple methods
+                passwordTxtBox.Invalidate();
+                passwordTxtBox.Update();
+                passwordTxtBox.Refresh();
+                confirmPwdTxtBox.Invalidate();
+                confirmPwdTxtBox.Update();
+                confirmPwdTxtBox.Refresh();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error toggling password visibility: {ex.Message}");
+            }
         }
 
         private void confirmPwdTxtBox_TextChanged(object sender, EventArgs e)
@@ -137,7 +203,41 @@ namespace Regalia_Front_End
 
         private void loginShowPasswordCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Toggle password visibility for login password field
+            try
+            {
+                // Store current text to preserve it during property change
+                string currentText = loginPasswordTxtBox.Text;
+                int selectionStart = loginPasswordTxtBox.SelectionStart;
+                int selectionLength = loginPasswordTxtBox.SelectionLength;
 
+                if (loginShowPasswordCheckBox.Checked)
+                {
+                    // Show password - remove masking
+                    loginPasswordTxtBox.PasswordChar = '\0';
+                    loginPasswordTxtBox.UseSystemPasswordChar = false;
+                }
+                else
+                {
+                    // Hide password - use asterisk for masking
+                    loginPasswordTxtBox.PasswordChar = '*';
+                    loginPasswordTxtBox.UseSystemPasswordChar = false;
+                }
+
+                // Restore text and selection
+                loginPasswordTxtBox.Text = currentText;
+                loginPasswordTxtBox.SelectionStart = selectionStart;
+                loginPasswordTxtBox.SelectionLength = selectionLength;
+
+                // Force update display using multiple methods
+                loginPasswordTxtBox.Invalidate();
+                loginPasswordTxtBox.Update();
+                loginPasswordTxtBox.Refresh();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error toggling password visibility: {ex.Message}");
+            }
         }
 
         private async void submitLoginBtn_Click(object sender, EventArgs e)
