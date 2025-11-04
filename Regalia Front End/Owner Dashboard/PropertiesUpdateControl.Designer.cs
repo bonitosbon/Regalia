@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.updProperties4 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.label17 = new System.Windows.Forms.Label();
             this.updateConfirmFrontDeskPwd = new Guna.UI2.WinForms.Guna2TextBox();
@@ -88,6 +89,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.availabilityCmb = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2Elipse3 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2Elipse4 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2Elipse5 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.updProperties4.SuspendLayout();
             this.updProperties2.SuspendLayout();
             this.updProperties1.SuspendLayout();
@@ -112,13 +118,13 @@
             this.updProperties4.Controls.Add(this.label22);
             this.updProperties4.Controls.Add(this.label23);
             this.updProperties4.FillColor = System.Drawing.Color.White;
-            this.updProperties4.Location = new System.Drawing.Point(727, 102);
-            this.updProperties4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updProperties4.Location = new System.Drawing.Point(545, 83);
+            this.updProperties4.Margin = new System.Windows.Forms.Padding(2);
             this.updProperties4.Name = "updProperties4";
             this.updProperties4.ShadowColor = System.Drawing.Color.Black;
             this.updProperties4.ShadowDepth = 200;
             this.updProperties4.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-            this.updProperties4.Size = new System.Drawing.Size(344, 630);
+            this.updProperties4.Size = new System.Drawing.Size(258, 512);
             this.updProperties4.TabIndex = 20;
             this.updProperties4.Visible = false;
             // 
@@ -127,9 +133,10 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label17.Location = new System.Drawing.Point(27, 193);
+            this.label17.Location = new System.Drawing.Point(20, 157);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(83, 20);
+            this.label17.Size = new System.Drawing.Size(69, 17);
             this.label17.TabIndex = 24;
             this.label17.Text = "Password";
             // 
@@ -148,12 +155,12 @@
             this.updateConfirmFrontDeskPwd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updateConfirmFrontDeskPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updateConfirmFrontDeskPwd.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updateConfirmFrontDeskPwd.Location = new System.Drawing.Point(21, 273);
-            this.updateConfirmFrontDeskPwd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updateConfirmFrontDeskPwd.Location = new System.Drawing.Point(16, 222);
+            this.updateConfirmFrontDeskPwd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updateConfirmFrontDeskPwd.Name = "updateConfirmFrontDeskPwd";
             this.updateConfirmFrontDeskPwd.PlaceholderText = "Confirm Password";
             this.updateConfirmFrontDeskPwd.SelectedText = "";
-            this.updateConfirmFrontDeskPwd.Size = new System.Drawing.Size(297, 48);
+            this.updateConfirmFrontDeskPwd.Size = new System.Drawing.Size(223, 39);
             this.updateConfirmFrontDeskPwd.TabIndex = 23;
             // 
             // updateFrontDeskPwd
@@ -171,12 +178,12 @@
             this.updateFrontDeskPwd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updateFrontDeskPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updateFrontDeskPwd.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updateFrontDeskPwd.Location = new System.Drawing.Point(21, 217);
-            this.updateFrontDeskPwd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updateFrontDeskPwd.Location = new System.Drawing.Point(16, 176);
+            this.updateFrontDeskPwd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updateFrontDeskPwd.Name = "updateFrontDeskPwd";
             this.updateFrontDeskPwd.PlaceholderText = "Password";
             this.updateFrontDeskPwd.SelectedText = "";
-            this.updateFrontDeskPwd.Size = new System.Drawing.Size(297, 48);
+            this.updateFrontDeskPwd.Size = new System.Drawing.Size(223, 39);
             this.updateFrontDeskPwd.TabIndex = 22;
             // 
             // updateFrontDeskUsername
@@ -194,12 +201,12 @@
             this.updateFrontDeskUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updateFrontDeskUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updateFrontDeskUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updateFrontDeskUsername.Location = new System.Drawing.Point(21, 94);
-            this.updateFrontDeskUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updateFrontDeskUsername.Location = new System.Drawing.Point(16, 76);
+            this.updateFrontDeskUsername.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updateFrontDeskUsername.Name = "updateFrontDeskUsername";
             this.updateFrontDeskUsername.PlaceholderText = "Username";
             this.updateFrontDeskUsername.SelectedText = "";
-            this.updateFrontDeskUsername.Size = new System.Drawing.Size(297, 48);
+            this.updateFrontDeskUsername.Size = new System.Drawing.Size(223, 39);
             this.updateFrontDeskUsername.TabIndex = 21;
             // 
             // updatePropertiesClose4
@@ -212,12 +219,12 @@
             this.updatePropertiesClose4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesClose4.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesClose4.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesClose4.Location = new System.Drawing.Point(285, 2);
-            this.updatePropertiesClose4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesClose4.Location = new System.Drawing.Point(214, 2);
+            this.updatePropertiesClose4.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesClose4.Name = "updatePropertiesClose4";
             this.updatePropertiesClose4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.updatePropertiesClose4.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesClose4.Size = new System.Drawing.Size(44, 44);
+            this.updatePropertiesClose4.Size = new System.Drawing.Size(33, 36);
             this.updatePropertiesClose4.TabIndex = 17;
             this.updatePropertiesClose4.Text = "X";
             // 
@@ -234,10 +241,10 @@
             this.updateSubmitLoginBtn.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(202)))), ((int)(((byte)(105)))));
             this.updateSubmitLoginBtn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.updateSubmitLoginBtn.ForeColor = System.Drawing.Color.White;
-            this.updateSubmitLoginBtn.Location = new System.Drawing.Point(69, 487);
-            this.updateSubmitLoginBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updateSubmitLoginBtn.Location = new System.Drawing.Point(52, 396);
+            this.updateSubmitLoginBtn.Margin = new System.Windows.Forms.Padding(2);
             this.updateSubmitLoginBtn.Name = "updateSubmitLoginBtn";
-            this.updateSubmitLoginBtn.Size = new System.Drawing.Size(216, 39);
+            this.updateSubmitLoginBtn.Size = new System.Drawing.Size(162, 32);
             this.updateSubmitLoginBtn.TabIndex = 20;
             this.updateSubmitLoginBtn.Text = "Update";
             // 
@@ -251,11 +258,11 @@
             this.updatePropertiesBack4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesBack4.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesBack4.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesBack4.Location = new System.Drawing.Point(147, 554);
-            this.updatePropertiesBack4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesBack4.Location = new System.Drawing.Point(110, 450);
+            this.updatePropertiesBack4.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesBack4.Name = "updatePropertiesBack4";
             this.updatePropertiesBack4.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesBack4.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesBack4.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesBack4.TabIndex = 14;
             this.updatePropertiesBack4.Text = "🔙";
             // 
@@ -264,9 +271,10 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label22.Location = new System.Drawing.Point(27, 70);
+            this.label22.Location = new System.Drawing.Point(20, 57);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(86, 20);
+            this.label22.Size = new System.Drawing.Size(73, 17);
             this.label22.TabIndex = 8;
             this.label22.Text = "Username";
             // 
@@ -275,9 +283,10 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label23.Location = new System.Drawing.Point(25, 6);
+            this.label23.Location = new System.Drawing.Point(19, 5);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(264, 36);
+            this.label23.Size = new System.Drawing.Size(214, 29);
             this.label23.TabIndex = 0;
             this.label23.Text = "Update Front Desk";
             // 
@@ -293,13 +302,13 @@
             this.updProperties2.Controls.Add(this.updDescTxt);
             this.updProperties2.Controls.Add(this.label12);
             this.updProperties2.FillColor = System.Drawing.Color.White;
-            this.updProperties2.Location = new System.Drawing.Point(1087, 102);
-            this.updProperties2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updProperties2.Location = new System.Drawing.Point(815, 83);
+            this.updProperties2.Margin = new System.Windows.Forms.Padding(2);
             this.updProperties2.Name = "updProperties2";
             this.updProperties2.ShadowColor = System.Drawing.Color.Black;
             this.updProperties2.ShadowDepth = 20;
             this.updProperties2.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-            this.updProperties2.Size = new System.Drawing.Size(344, 630);
+            this.updProperties2.Size = new System.Drawing.Size(258, 512);
             this.updProperties2.TabIndex = 18;
             this.updProperties2.Visible = false;
             // 
@@ -313,12 +322,12 @@
             this.updatePropertiesClose2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesClose2.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesClose2.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesClose2.Location = new System.Drawing.Point(288, 2);
-            this.updatePropertiesClose2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesClose2.Location = new System.Drawing.Point(216, 2);
+            this.updatePropertiesClose2.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesClose2.Name = "updatePropertiesClose2";
             this.updatePropertiesClose2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.updatePropertiesClose2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesClose2.Size = new System.Drawing.Size(44, 44);
+            this.updatePropertiesClose2.Size = new System.Drawing.Size(33, 36);
             this.updatePropertiesClose2.TabIndex = 15;
             this.updatePropertiesClose2.Text = "X";
             // 
@@ -332,11 +341,11 @@
             this.updatePropertiesBack2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesBack2.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesBack2.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesBack2.Location = new System.Drawing.Point(21, 554);
-            this.updatePropertiesBack2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesBack2.Location = new System.Drawing.Point(16, 450);
+            this.updatePropertiesBack2.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesBack2.Name = "updatePropertiesBack2";
             this.updatePropertiesBack2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesBack2.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesBack2.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesBack2.TabIndex = 14;
             this.updatePropertiesBack2.Text = "🔙";
             // 
@@ -350,12 +359,12 @@
             this.updatePropertiesNext2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesNext2.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesNext2.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesNext2.Location = new System.Drawing.Point(253, 554);
-            this.updatePropertiesNext2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesNext2.Location = new System.Drawing.Point(190, 450);
+            this.updatePropertiesNext2.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesNext2.Name = "updatePropertiesNext2";
             this.updatePropertiesNext2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.updatePropertiesNext2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesNext2.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesNext2.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesNext2.TabIndex = 13;
             this.updatePropertiesNext2.Text = "➡️";
             // 
@@ -364,9 +373,10 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label10.Location = new System.Drawing.Point(17, 315);
+            this.label10.Location = new System.Drawing.Point(13, 256);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 20);
+            this.label10.Size = new System.Drawing.Size(44, 17);
             this.label10.TabIndex = 9;
             this.label10.Text = "Rules";
             // 
@@ -375,9 +385,10 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label11.Location = new System.Drawing.Point(17, 75);
+            this.label11.Location = new System.Drawing.Point(13, 61);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 20);
+            this.label11.Size = new System.Drawing.Size(79, 17);
             this.label11.TabIndex = 8;
             this.label11.Text = "Description";
             // 
@@ -396,12 +407,12 @@
             this.updRuleTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updRuleTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updRuleTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updRuleTxt.Location = new System.Drawing.Point(17, 341);
-            this.updRuleTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updRuleTxt.Location = new System.Drawing.Point(13, 277);
+            this.updRuleTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updRuleTxt.Name = "updRuleTxt";
             this.updRuleTxt.PlaceholderText = "Rules";
             this.updRuleTxt.SelectedText = "";
-            this.updRuleTxt.Size = new System.Drawing.Size(297, 194);
+            this.updRuleTxt.Size = new System.Drawing.Size(223, 158);
             this.updRuleTxt.TabIndex = 3;
             // 
             // updDescTxt
@@ -419,12 +430,12 @@
             this.updDescTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updDescTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updDescTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updDescTxt.Location = new System.Drawing.Point(17, 98);
-            this.updDescTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updDescTxt.Location = new System.Drawing.Point(13, 80);
+            this.updDescTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updDescTxt.Name = "updDescTxt";
             this.updDescTxt.PlaceholderText = "Description";
             this.updDescTxt.SelectedText = "";
-            this.updDescTxt.Size = new System.Drawing.Size(297, 194);
+            this.updDescTxt.Size = new System.Drawing.Size(223, 158);
             this.updDescTxt.TabIndex = 2;
             // 
             // label12
@@ -432,9 +443,10 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label12.Location = new System.Drawing.Point(50, 10);
+            this.label12.Location = new System.Drawing.Point(38, 8);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(232, 36);
+            this.label12.Size = new System.Drawing.Size(188, 29);
             this.label12.TabIndex = 0;
             this.label12.Text = "Update Property";
             // 
@@ -457,13 +469,13 @@
             this.updProperties1.Controls.Add(this.updNameTxt);
             this.updProperties1.Controls.Add(this.label1);
             this.updProperties1.FillColor = System.Drawing.Color.White;
-            this.updProperties1.Location = new System.Drawing.Point(365, 102);
-            this.updProperties1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updProperties1.Location = new System.Drawing.Point(274, 83);
+            this.updProperties1.Margin = new System.Windows.Forms.Padding(2);
             this.updProperties1.Name = "updProperties1";
             this.updProperties1.ShadowColor = System.Drawing.Color.Black;
             this.updProperties1.ShadowDepth = 20;
             this.updProperties1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-            this.updProperties1.Size = new System.Drawing.Size(344, 630);
+            this.updProperties1.Size = new System.Drawing.Size(258, 512);
             this.updProperties1.TabIndex = 17;
             this.updProperties1.Visible = false;
             // 
@@ -477,11 +489,11 @@
             this.updatePropertiesBack1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesBack1.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesBack1.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesBack1.Location = new System.Drawing.Point(21, 554);
-            this.updatePropertiesBack1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesBack1.Location = new System.Drawing.Point(16, 450);
+            this.updatePropertiesBack1.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesBack1.Name = "updatePropertiesBack1";
             this.updatePropertiesBack1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesBack1.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesBack1.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesBack1.TabIndex = 17;
             this.updatePropertiesBack1.Text = "🔙";
             // 
@@ -495,12 +507,12 @@
             this.updatePropertiesClose1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesClose1.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesClose1.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesClose1.Location = new System.Drawing.Point(285, 2);
-            this.updatePropertiesClose1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesClose1.Location = new System.Drawing.Point(214, 2);
+            this.updatePropertiesClose1.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesClose1.Name = "updatePropertiesClose1";
             this.updatePropertiesClose1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.updatePropertiesClose1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesClose1.Size = new System.Drawing.Size(44, 44);
+            this.updatePropertiesClose1.Size = new System.Drawing.Size(33, 36);
             this.updatePropertiesClose1.TabIndex = 16;
             this.updatePropertiesClose1.Text = "X";
             // 
@@ -514,11 +526,11 @@
             this.updatePropertiesNext1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesNext1.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesNext1.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesNext1.Location = new System.Drawing.Point(253, 554);
-            this.updatePropertiesNext1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesNext1.Location = new System.Drawing.Point(190, 450);
+            this.updatePropertiesNext1.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesNext1.Name = "updatePropertiesNext1";
             this.updatePropertiesNext1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesNext1.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesNext1.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesNext1.TabIndex = 13;
             this.updatePropertiesNext1.Text = "➡️";
             // 
@@ -527,9 +539,10 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label6.Location = new System.Drawing.Point(17, 330);
+            this.label6.Location = new System.Drawing.Point(13, 268);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 20);
+            this.label6.Size = new System.Drawing.Size(81, 17);
             this.label6.TabIndex = 12;
             this.label6.Text = "Room Type";
             // 
@@ -538,9 +551,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label5.Location = new System.Drawing.Point(17, 409);
+            this.label5.Location = new System.Drawing.Point(13, 332);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(188, 20);
+            this.label5.Size = new System.Drawing.Size(159, 17);
             this.label5.TabIndex = 11;
             this.label5.Text = "Check-in and Check-out";
             // 
@@ -549,9 +563,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label4.Location = new System.Drawing.Point(17, 245);
+            this.label4.Location = new System.Drawing.Point(13, 199);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Price";
             // 
@@ -560,9 +575,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label3.Location = new System.Drawing.Point(17, 158);
+            this.label3.Location = new System.Drawing.Point(13, 128);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.Size = new System.Drawing.Size(62, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "Location";
             // 
@@ -571,9 +587,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label2.Location = new System.Drawing.Point(17, 75);
+            this.label2.Location = new System.Drawing.Point(13, 61);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 20);
+            this.label2.Size = new System.Drawing.Size(100, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "Unit Name/No.";
             // 
@@ -592,12 +609,12 @@
             this.updOutTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updOutTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updOutTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updOutTxt.Location = new System.Drawing.Point(17, 487);
-            this.updOutTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updOutTxt.Location = new System.Drawing.Point(13, 396);
+            this.updOutTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updOutTxt.Name = "updOutTxt";
             this.updOutTxt.PlaceholderText = "Check-out";
             this.updOutTxt.SelectedText = "";
-            this.updOutTxt.Size = new System.Drawing.Size(297, 48);
+            this.updOutTxt.Size = new System.Drawing.Size(223, 39);
             this.updOutTxt.TabIndex = 7;
             // 
             // updInTxt
@@ -615,12 +632,12 @@
             this.updInTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updInTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updInTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updInTxt.Location = new System.Drawing.Point(17, 432);
-            this.updInTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updInTxt.Location = new System.Drawing.Point(13, 351);
+            this.updInTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updInTxt.Name = "updInTxt";
             this.updInTxt.PlaceholderText = "Check-in";
             this.updInTxt.SelectedText = "";
-            this.updInTxt.Size = new System.Drawing.Size(297, 48);
+            this.updInTxt.Size = new System.Drawing.Size(223, 39);
             this.updInTxt.TabIndex = 6;
             // 
             // updPriceTxt
@@ -638,12 +655,12 @@
             this.updPriceTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updPriceTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updPriceTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updPriceTxt.Location = new System.Drawing.Point(17, 270);
-            this.updPriceTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updPriceTxt.Location = new System.Drawing.Point(13, 219);
+            this.updPriceTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updPriceTxt.Name = "updPriceTxt";
             this.updPriceTxt.PlaceholderText = "Price";
             this.updPriceTxt.SelectedText = "";
-            this.updPriceTxt.Size = new System.Drawing.Size(297, 48);
+            this.updPriceTxt.Size = new System.Drawing.Size(223, 39);
             this.updPriceTxt.TabIndex = 5;
             // 
             // updTypeCmb
@@ -659,10 +676,10 @@
             this.updTypeCmb.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.updTypeCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updTypeCmb.ItemHeight = 30;
-            this.updTypeCmb.Location = new System.Drawing.Point(17, 353);
-            this.updTypeCmb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updTypeCmb.Location = new System.Drawing.Point(13, 287);
+            this.updTypeCmb.Margin = new System.Windows.Forms.Padding(2);
             this.updTypeCmb.Name = "updTypeCmb";
-            this.updTypeCmb.Size = new System.Drawing.Size(297, 36);
+            this.updTypeCmb.Size = new System.Drawing.Size(224, 36);
             this.updTypeCmb.TabIndex = 4;
             // 
             // updLocationTxt
@@ -680,12 +697,12 @@
             this.updLocationTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updLocationTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updLocationTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updLocationTxt.Location = new System.Drawing.Point(17, 182);
-            this.updLocationTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updLocationTxt.Location = new System.Drawing.Point(13, 148);
+            this.updLocationTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updLocationTxt.Name = "updLocationTxt";
             this.updLocationTxt.PlaceholderText = "Location";
             this.updLocationTxt.SelectedText = "";
-            this.updLocationTxt.Size = new System.Drawing.Size(297, 48);
+            this.updLocationTxt.Size = new System.Drawing.Size(223, 39);
             this.updLocationTxt.TabIndex = 3;
             // 
             // updNameTxt
@@ -703,12 +720,12 @@
             this.updNameTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updNameTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.updNameTxt.Location = new System.Drawing.Point(17, 98);
-            this.updNameTxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.updNameTxt.Location = new System.Drawing.Point(13, 80);
+            this.updNameTxt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.updNameTxt.Name = "updNameTxt";
             this.updNameTxt.PlaceholderText = "Unit Name/No.";
             this.updNameTxt.SelectedText = "";
-            this.updNameTxt.Size = new System.Drawing.Size(297, 48);
+            this.updNameTxt.Size = new System.Drawing.Size(223, 39);
             this.updNameTxt.TabIndex = 2;
             // 
             // label1
@@ -716,9 +733,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label1.Location = new System.Drawing.Point(47, 10);
+            this.label1.Location = new System.Drawing.Point(35, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 36);
+            this.label1.Size = new System.Drawing.Size(188, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Update Property";
             // 
@@ -736,13 +754,13 @@
             this.updProperties3.Controls.Add(this.label8);
             this.updProperties3.Controls.Add(this.label9);
             this.updProperties3.FillColor = System.Drawing.Color.White;
-            this.updProperties3.Location = new System.Drawing.Point(15, 102);
-            this.updProperties3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updProperties3.Location = new System.Drawing.Point(11, 83);
+            this.updProperties3.Margin = new System.Windows.Forms.Padding(2);
             this.updProperties3.Name = "updProperties3";
             this.updProperties3.ShadowColor = System.Drawing.Color.Black;
             this.updProperties3.ShadowDepth = 200;
             this.updProperties3.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-            this.updProperties3.Size = new System.Drawing.Size(344, 630);
+            this.updProperties3.Size = new System.Drawing.Size(258, 512);
             this.updProperties3.TabIndex = 19;
             this.updProperties3.Visible = false;
             // 
@@ -756,11 +774,11 @@
             this.updatePropertiesNext3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesNext3.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesNext3.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesNext3.Location = new System.Drawing.Point(269, 554);
-            this.updatePropertiesNext3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesNext3.Location = new System.Drawing.Point(202, 450);
+            this.updatePropertiesNext3.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesNext3.Name = "updatePropertiesNext3";
             this.updatePropertiesNext3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesNext3.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesNext3.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesNext3.TabIndex = 20;
             this.updatePropertiesNext3.Text = "➡️";
             // 
@@ -774,12 +792,12 @@
             this.updatePropertiesClose3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesClose3.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesClose3.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesClose3.Location = new System.Drawing.Point(285, 2);
-            this.updatePropertiesClose3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesClose3.Location = new System.Drawing.Point(214, 2);
+            this.updatePropertiesClose3.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesClose3.Name = "updatePropertiesClose3";
             this.updatePropertiesClose3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.updatePropertiesClose3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesClose3.Size = new System.Drawing.Size(44, 44);
+            this.updatePropertiesClose3.Size = new System.Drawing.Size(33, 36);
             this.updatePropertiesClose3.TabIndex = 17;
             this.updatePropertiesClose3.Text = "X";
             // 
@@ -789,19 +807,20 @@
             this.updateImage4.BorderRadius = 5;
             this.updateImage4.BorderThickness = 2;
             this.updateImage4.Controls.Add(this.label16);
-            this.updateImage4.Location = new System.Drawing.Point(181, 295);
-            this.updateImage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updateImage4.Location = new System.Drawing.Point(136, 240);
+            this.updateImage4.Margin = new System.Windows.Forms.Padding(2);
             this.updateImage4.Name = "updateImage4";
-            this.updateImage4.Size = new System.Drawing.Size(132, 116);
+            this.updateImage4.Size = new System.Drawing.Size(99, 94);
             this.updateImage4.TabIndex = 19;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label16.Location = new System.Drawing.Point(29, 46);
+            this.label16.Location = new System.Drawing.Point(22, 37);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(73, 16);
+            this.label16.Size = new System.Drawing.Size(57, 13);
             this.label16.TabIndex = 0;
             this.label16.Text = "Add image";
             // 
@@ -811,19 +830,20 @@
             this.updateImage3.BorderRadius = 5;
             this.updateImage3.BorderThickness = 2;
             this.updateImage3.Controls.Add(this.label15);
-            this.updateImage3.Location = new System.Drawing.Point(29, 295);
-            this.updateImage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updateImage3.Location = new System.Drawing.Point(22, 240);
+            this.updateImage3.Margin = new System.Windows.Forms.Padding(2);
             this.updateImage3.Name = "updateImage3";
-            this.updateImage3.Size = new System.Drawing.Size(132, 116);
+            this.updateImage3.Size = new System.Drawing.Size(99, 94);
             this.updateImage3.TabIndex = 18;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label15.Location = new System.Drawing.Point(29, 46);
+            this.label15.Location = new System.Drawing.Point(22, 37);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 16);
+            this.label15.Size = new System.Drawing.Size(57, 13);
             this.label15.TabIndex = 0;
             this.label15.Text = "Add image";
             // 
@@ -833,19 +853,20 @@
             this.updateImage2.BorderRadius = 5;
             this.updateImage2.BorderThickness = 2;
             this.updateImage2.Controls.Add(this.label14);
-            this.updateImage2.Location = new System.Drawing.Point(181, 158);
-            this.updateImage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updateImage2.Location = new System.Drawing.Point(136, 128);
+            this.updateImage2.Margin = new System.Windows.Forms.Padding(2);
             this.updateImage2.Name = "updateImage2";
-            this.updateImage2.Size = new System.Drawing.Size(132, 116);
+            this.updateImage2.Size = new System.Drawing.Size(99, 94);
             this.updateImage2.TabIndex = 17;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label14.Location = new System.Drawing.Point(29, 46);
+            this.label14.Location = new System.Drawing.Point(22, 37);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(73, 16);
+            this.label14.Size = new System.Drawing.Size(57, 13);
             this.label14.TabIndex = 0;
             this.label14.Text = "Add image";
             // 
@@ -855,19 +876,20 @@
             this.updateImage1.BorderRadius = 5;
             this.updateImage1.BorderThickness = 2;
             this.updateImage1.Controls.Add(this.label13);
-            this.updateImage1.Location = new System.Drawing.Point(29, 158);
-            this.updateImage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updateImage1.Location = new System.Drawing.Point(22, 128);
+            this.updateImage1.Margin = new System.Windows.Forms.Padding(2);
             this.updateImage1.Name = "updateImage1";
-            this.updateImage1.Size = new System.Drawing.Size(132, 116);
+            this.updateImage1.Size = new System.Drawing.Size(99, 94);
             this.updateImage1.TabIndex = 16;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label13.Location = new System.Drawing.Point(29, 46);
+            this.label13.Location = new System.Drawing.Point(22, 37);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(73, 16);
+            this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 0;
             this.label13.Text = "Add image";
             // 
@@ -876,9 +898,10 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label7.Location = new System.Drawing.Point(41, 94);
+            this.label7.Location = new System.Drawing.Point(31, 76);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(254, 20);
+            this.label7.Size = new System.Drawing.Size(212, 17);
             this.label7.TabIndex = 15;
             this.label7.Text = "(the first image will be the cover)";
             // 
@@ -892,11 +915,11 @@
             this.updatePropertiesBack3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.updatePropertiesBack3.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.updatePropertiesBack3.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesBack3.Location = new System.Drawing.Point(29, 554);
-            this.updatePropertiesBack3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesBack3.Location = new System.Drawing.Point(22, 450);
+            this.updatePropertiesBack3.Margin = new System.Windows.Forms.Padding(2);
             this.updatePropertiesBack3.Name = "updatePropertiesBack3";
             this.updatePropertiesBack3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesBack3.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesBack3.Size = new System.Drawing.Size(46, 46);
             this.updatePropertiesBack3.TabIndex = 14;
             this.updatePropertiesBack3.Text = "🔙";
             // 
@@ -905,9 +928,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label8.Location = new System.Drawing.Point(107, 74);
+            this.label8.Location = new System.Drawing.Point(80, 60);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 20);
+            this.label8.Size = new System.Drawing.Size(94, 17);
             this.label8.TabIndex = 8;
             this.label8.Text = "Add 4 images";
             // 
@@ -916,9 +940,10 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label9.Location = new System.Drawing.Point(51, 11);
+            this.label9.Location = new System.Drawing.Point(38, 9);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(232, 36);
+            this.label9.Size = new System.Drawing.Size(188, 29);
             this.label9.TabIndex = 0;
             this.label9.Text = "Update Property";
             // 
@@ -935,13 +960,13 @@
             this.updPropertiesFirst.Controls.Add(this.availabilityCmb);
             this.updPropertiesFirst.Controls.Add(this.label25);
             this.updPropertiesFirst.FillColor = System.Drawing.Color.White;
-            this.updPropertiesFirst.Location = new System.Drawing.Point(662, 56);
-            this.updPropertiesFirst.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updPropertiesFirst.Location = new System.Drawing.Point(496, 46);
+            this.updPropertiesFirst.Margin = new System.Windows.Forms.Padding(2);
             this.updPropertiesFirst.Name = "updPropertiesFirst";
             this.updPropertiesFirst.ShadowColor = System.Drawing.Color.Black;
             this.updPropertiesFirst.ShadowDepth = 20;
             this.updPropertiesFirst.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-            this.updPropertiesFirst.Size = new System.Drawing.Size(344, 630);
+            this.updPropertiesFirst.Size = new System.Drawing.Size(258, 512);
             this.updPropertiesFirst.TabIndex = 21;
             this.updPropertiesFirst.Visible = false;
             // 
@@ -954,9 +979,10 @@
             this.copyClip.FillColor = System.Drawing.Color.Transparent;
             this.copyClip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.copyClip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.copyClip.Location = new System.Drawing.Point(268, 316);
+            this.copyClip.Location = new System.Drawing.Point(201, 257);
+            this.copyClip.Margin = new System.Windows.Forms.Padding(2);
             this.copyClip.Name = "copyClip";
-            this.copyClip.Size = new System.Drawing.Size(35, 33);
+            this.copyClip.Size = new System.Drawing.Size(26, 27);
             this.copyClip.TabIndex = 19;
             this.copyClip.Text = "📋";
             // 
@@ -975,13 +1001,13 @@
             this.txtBookingLink.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtBookingLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.txtBookingLink.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBookingLink.Location = new System.Drawing.Point(17, 306);
-            this.txtBookingLink.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBookingLink.Location = new System.Drawing.Point(13, 249);
+            this.txtBookingLink.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtBookingLink.Name = "txtBookingLink";
             this.txtBookingLink.PlaceholderText = "Link here";
             this.txtBookingLink.ReadOnly = true;
             this.txtBookingLink.SelectedText = "";
-            this.txtBookingLink.Size = new System.Drawing.Size(297, 48);
+            this.txtBookingLink.Size = new System.Drawing.Size(223, 39);
             this.txtBookingLink.TabIndex = 18;
             // 
             // delBtnProperties
@@ -997,10 +1023,10 @@
             this.delBtnProperties.FillColor2 = System.Drawing.Color.HotPink;
             this.delBtnProperties.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.delBtnProperties.ForeColor = System.Drawing.Color.White;
-            this.delBtnProperties.Location = new System.Drawing.Point(17, 563);
-            this.delBtnProperties.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.delBtnProperties.Location = new System.Drawing.Point(13, 457);
+            this.delBtnProperties.Margin = new System.Windows.Forms.Padding(2);
             this.delBtnProperties.Name = "delBtnProperties";
-            this.delBtnProperties.Size = new System.Drawing.Size(216, 39);
+            this.delBtnProperties.Size = new System.Drawing.Size(162, 32);
             this.delBtnProperties.TabIndex = 17;
             this.delBtnProperties.Text = "Delete";
             // 
@@ -1014,12 +1040,12 @@
             this.guna2CircleButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.Location = new System.Drawing.Point(285, 2);
-            this.guna2CircleButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2CircleButton1.Location = new System.Drawing.Point(218, 2);
+            this.guna2CircleButton1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2CircleButton1.Name = "guna2CircleButton1";
             this.guna2CircleButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton1.Size = new System.Drawing.Size(44, 44);
+            this.guna2CircleButton1.Size = new System.Drawing.Size(38, 36);
             this.guna2CircleButton1.TabIndex = 16;
             this.guna2CircleButton1.Text = "X";
             // 
@@ -1033,11 +1059,11 @@
             this.nextProperties10.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.nextProperties10.Font = new System.Drawing.Font("Segoe UI", 18F);
             this.nextProperties10.ForeColor = System.Drawing.Color.White;
-            this.nextProperties10.Location = new System.Drawing.Point(268, 554);
-            this.nextProperties10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nextProperties10.Location = new System.Drawing.Point(201, 450);
+            this.nextProperties10.Margin = new System.Windows.Forms.Padding(2);
             this.nextProperties10.Name = "nextProperties10";
             this.nextProperties10.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.nextProperties10.Size = new System.Drawing.Size(61, 57);
+            this.nextProperties10.Size = new System.Drawing.Size(46, 46);
             this.nextProperties10.TabIndex = 13;
             this.nextProperties10.Text = "➡️";
             // 
@@ -1046,9 +1072,10 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label21.Location = new System.Drawing.Point(19, 282);
+            this.label21.Location = new System.Drawing.Point(14, 229);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(105, 20);
+            this.label21.Size = new System.Drawing.Size(89, 17);
             this.label21.TabIndex = 9;
             this.label21.Text = "Booking Link";
             // 
@@ -1057,9 +1084,10 @@
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label24.Location = new System.Drawing.Point(19, 102);
+            this.label24.Location = new System.Drawing.Point(14, 83);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(57, 20);
+            this.label24.Size = new System.Drawing.Size(48, 17);
             this.label24.TabIndex = 8;
             this.label24.Text = "Status";
             // 
@@ -1076,10 +1104,10 @@
             this.availabilityCmb.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.availabilityCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.availabilityCmb.ItemHeight = 30;
-            this.availabilityCmb.Location = new System.Drawing.Point(23, 124);
-            this.availabilityCmb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.availabilityCmb.Location = new System.Drawing.Point(17, 101);
+            this.availabilityCmb.Margin = new System.Windows.Forms.Padding(2);
             this.availabilityCmb.Name = "availabilityCmb";
-            this.availabilityCmb.Size = new System.Drawing.Size(297, 36);
+            this.availabilityCmb.Size = new System.Drawing.Size(224, 36);
             this.availabilityCmb.TabIndex = 4;
             // 
             // label25
@@ -1087,24 +1115,44 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.label25.Location = new System.Drawing.Point(47, 10);
+            this.label25.Location = new System.Drawing.Point(35, 8);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(232, 36);
+            this.label25.Size = new System.Drawing.Size(188, 29);
             this.label25.TabIndex = 0;
             this.label25.Text = "Update Property";
             // 
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.TargetControl = this.updPropertiesFirst;
+            // 
+            // guna2Elipse2
+            // 
+            this.guna2Elipse2.TargetControl = this.updProperties1;
+            // 
+            // guna2Elipse3
+            // 
+            this.guna2Elipse3.TargetControl = this.updProperties2;
+            // 
+            // guna2Elipse4
+            // 
+            this.guna2Elipse4.TargetControl = this.updProperties3;
+            // 
+            // guna2Elipse5
+            // 
+            this.guna2Elipse5.TargetControl = this.updProperties4;
+            // 
             // PropertiesUpdateControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.updPropertiesFirst);
             this.Controls.Add(this.updProperties4);
             this.Controls.Add(this.updProperties2);
             this.Controls.Add(this.updProperties1);
             this.Controls.Add(this.updProperties3);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PropertiesUpdateControl";
-            this.Size = new System.Drawing.Size(1496, 870);
+            this.Size = new System.Drawing.Size(1122, 707);
             this.updProperties4.ResumeLayout(false);
             this.updProperties4.PerformLayout();
             this.updProperties2.ResumeLayout(false);
@@ -1189,5 +1237,10 @@
         private System.Windows.Forms.Label label25;
         public Guna.UI2.WinForms.Guna2Button copyClip;
         public Guna.UI2.WinForms.Guna2TextBox txtBookingLink;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse3;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse4;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse5;
     }
 }
