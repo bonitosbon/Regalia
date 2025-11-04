@@ -56,7 +56,7 @@
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(172)))), ((int)(((byte)(192)))));
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(208)))), ((int)(((byte)(119)))));
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2GradientPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(865, 517);
             this.guna2GradientPanel1.TabIndex = 0;
@@ -67,7 +67,7 @@
             this.guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel3.FillColor = System.Drawing.Color.Transparent;
             this.guna2Panel3.Location = new System.Drawing.Point(201, 81);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(664, 436);
             this.guna2Panel3.TabIndex = 5;
@@ -81,7 +81,7 @@
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel2.FillColor = System.Drawing.Color.Transparent;
             this.guna2Panel2.Location = new System.Drawing.Point(201, 0);
-            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(664, 81);
             this.guna2Panel2.TabIndex = 4;
@@ -124,7 +124,7 @@
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel1.FillColor = System.Drawing.Color.Transparent;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(201, 517);
             this.guna2Panel1.TabIndex = 3;
@@ -142,11 +142,11 @@
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.Location = new System.Drawing.Point(9, 470);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(181, 37);
             this.guna2Button1.TabIndex = 8;
-            this.guna2Button1.Text = "❌   Log out";
+            this.guna2Button1.Text = "❌   Log out ";
             this.guna2Button1.UseTransparentBackground = true;
             this.guna2Button1.Visible = false;
             // 
@@ -174,7 +174,7 @@
             this.settingsBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.settingsBtn.ForeColor = System.Drawing.Color.White;
             this.settingsBtn.Location = new System.Drawing.Point(9, 429);
-            this.settingsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.settingsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(181, 37);
             this.settingsBtn.TabIndex = 6;
@@ -193,7 +193,7 @@
             this.logOutBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.logOutBtn.ForeColor = System.Drawing.Color.White;
             this.logOutBtn.Location = new System.Drawing.Point(9, 509);
-            this.logOutBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logOutBtn.Margin = new System.Windows.Forms.Padding(2);
             this.logOutBtn.Name = "logOutBtn";
             this.logOutBtn.Size = new System.Drawing.Size(181, 37);
             this.logOutBtn.TabIndex = 5;
@@ -212,8 +212,8 @@
             this.frontbookingBtn.FillColor = System.Drawing.Color.Transparent;
             this.frontbookingBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.frontbookingBtn.ForeColor = System.Drawing.Color.White;
-            this.frontbookingBtn.Location = new System.Drawing.Point(9, 189);
-            this.frontbookingBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.frontbookingBtn.Location = new System.Drawing.Point(9, 140);
+            this.frontbookingBtn.Margin = new System.Windows.Forms.Padding(2);
             this.frontbookingBtn.Name = "frontbookingBtn";
             this.frontbookingBtn.Size = new System.Drawing.Size(181, 37);
             this.frontbookingBtn.TabIndex = 1;
@@ -234,12 +234,12 @@
             this.frontdashboardBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.frontdashboardBtn.ForeColor = System.Drawing.Color.White;
             this.frontdashboardBtn.IndicateFocus = true;
-            this.frontdashboardBtn.Location = new System.Drawing.Point(9, 132);
-            this.frontdashboardBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.frontdashboardBtn.Location = new System.Drawing.Point(9, 99);
+            this.frontdashboardBtn.Margin = new System.Windows.Forms.Padding(2);
             this.frontdashboardBtn.Name = "frontdashboardBtn";
             this.frontdashboardBtn.Size = new System.Drawing.Size(181, 37);
             this.frontdashboardBtn.TabIndex = 0;
-            this.frontdashboardBtn.Text = "🖥️    Dashboard";
+            this.frontdashboardBtn.Text = "   🖥️    Dashboard";
             this.frontdashboardBtn.UseTransparentBackground = true;
             // 
             // guna2Elipse1
@@ -254,8 +254,9 @@
             this.ClientSize = new System.Drawing.Size(865, 517);
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PrincipalFront";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal Front";
             this.Load += new System.EventHandler(this.PrincipalFront_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
