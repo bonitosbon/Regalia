@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using Regalia_Front_End.Helpers;
 
 namespace Regalia_Front_End
 {
@@ -157,7 +158,16 @@ namespace Regalia_Front_End
                     };
 
                     // Load and display the image
-                    pictureBox.Image = Image.FromFile(imagePath);
+                    if (imagePath.StartsWith("data:image/"))
+                    {
+                        // Convert base64 to Image
+                        pictureBox.Image = ImageBase64Helper.ConvertBase64ToImage(imagePath);
+                    }
+                    else
+                    {
+                        // Load from file path
+                        pictureBox.Image = Image.FromFile(imagePath);
+                    }
                     
                     // Add PictureBox to the panel
                     panel.Controls.Add(pictureBox);

@@ -970,9 +970,9 @@
         public Guna.UI2.WinForms.Guna2CircleButton propertiesBack4;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
-        private Guna.UI2.WinForms.Guna2TextBox frontDeskUsername;
-        private Guna.UI2.WinForms.Guna2TextBox confirmFrontDeskPwd;
-        private Guna.UI2.WinForms.Guna2TextBox frontDeskPwd;
+        public Guna.UI2.WinForms.Guna2TextBox frontDeskUsername;
+        public Guna.UI2.WinForms.Guna2TextBox confirmFrontDeskPwd;
+        public Guna.UI2.WinForms.Guna2TextBox frontDeskPwd;
         private System.Windows.Forms.Label label17;
         public Guna.UI2.WinForms.Guna2CircleButton propertiesNext3;
     }

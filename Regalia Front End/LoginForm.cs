@@ -159,6 +159,7 @@ namespace Regalia_Front_End
             {
                 bool loginSuccess = false;
                 string welcomeMessage = "Welcome!";
+                Models.LoginResponse loginResponse = null;
 
                 // Try API login first
                 try
@@ -173,7 +174,7 @@ namespace Regalia_Front_End
                         };
 
                         System.Diagnostics.Debug.WriteLine($"Attempting login with EmailOrUsername: {username}");
-                        var loginResponse = await apiService.LoginAsync(loginDto);
+                        loginResponse = await apiService.LoginAsync(loginDto);
 
                         if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.Token))
                         {
@@ -234,15 +235,70 @@ namespace Regalia_Front_End
                     // Login successful
                     MessageBox.Show(welcomeMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
-                    // Close the login form and show Principal form
+                    // Close the login form
                     this.Hide();
                     
-                    // Open Principal form
-                    Principal principalForm = new Principal();
-                    principalForm.ShowDialog();
+                    // Check user role and open appropriate form
+                    if (loginResponse != null && loginResponse.User != null && loginResponse.User.Roles != null)
+                    {
+                        // Debug: Log the roles received
+                        System.Diagnostics.Debug.WriteLine($"User roles received: {string.Join(", ", loginResponse.User.Roles)}");
+                        System.Diagnostics.Debug.WriteLine($"Roles count: {loginResponse.User.Roles.Count}");
+                        
+                        // Check roles (case-insensitive comparison)
+                        bool hasFrontDesk = loginResponse.User.Roles.Any(r => 
+                            string.Equals(r, "FRONTDESK", StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals(r, "FrontDesk", StringComparison.OrdinalIgnoreCase));
+                        bool hasOwner = loginResponse.User.Roles.Any(r => 
+                            string.Equals(r, "OWNER", StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals(r, "Owner", StringComparison.OrdinalIgnoreCase));
+                        
+                        System.Diagnostics.Debug.WriteLine($"Has FrontDesk role: {hasFrontDesk}, Has Owner role: {hasOwner}");
+                        
+                        if (hasFrontDesk)
+                        {
+                            // Open PrincipalFront form for front desk users
+                            System.Diagnostics.Debug.WriteLine("Opening PrincipalFront for FRONTDESK user");
+                            PrincipalFront principalFrontForm = new PrincipalFront();
+                            principalFrontForm.ShowDialog();
+                            // After dialog closes (e.g., logout), show login form again
+                            this.Show();
+                        }
+                        else if (hasOwner)
+                        {
+                            // Open Principal form for owner users
+                            System.Diagnostics.Debug.WriteLine("Opening Principal for OWNER user");
+                            Principal principalForm = new Principal();
+                            principalForm.ShowDialog();
+                            // After dialog closes (e.g., logout), show login form again
+                            this.Show();
+                        }
+                        else
+                        {
+                            // User doesn't have required role - show debug info
+                            string rolesInfo = loginResponse.User.Roles.Count > 0 
+                                ? string.Join(", ", loginResponse.User.Roles) 
+                                : "No roles found";
+                            System.Diagnostics.Debug.WriteLine($"Access denied - User roles: [{rolesInfo}]");
+                            
+                            MessageBox.Show($"You do not have permission to access this application.\n\nYour current role(s): {rolesInfo}\n\nPlease contact an administrator.",
+                                "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            this.Show(); // Show login form again
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        // Fallback: if no role info, assume OWNER (for backward compatibility)
+                        System.Diagnostics.Debug.WriteLine("No role information found, defaulting to Principal (Owner)");
+                        Principal principalForm = new Principal();
+                        principalForm.ShowDialog();
+                        // After dialog closes (e.g., logout), show login form again
+                        this.Show();
+                    }
                     
-                    // Close the login form completely
-                    this.Close();
+                    // Don't close the login form - it should stay open so users can log in again after logout
+                    // The login form will only close when the application is terminated
                 }
                 else
                 {

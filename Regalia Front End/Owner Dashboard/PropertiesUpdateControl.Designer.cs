@@ -48,6 +48,7 @@
             this.updDescTxt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.updProperties1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.updatePropertiesBack1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.updatePropertiesClose1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.updatePropertiesNext1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -78,6 +79,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.updPropertiesFirst = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.copyClip = new Guna.UI2.WinForms.Guna2Button();
+            this.txtBookingLink = new Guna.UI2.WinForms.Guna2TextBox();
             this.delBtnProperties = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.nextProperties10 = new Guna.UI2.WinForms.Guna2CircleButton();
@@ -85,9 +88,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.availabilityCmb = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.updatePropertiesBack1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.txtBookingLink = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.updProperties4.SuspendLayout();
             this.updProperties2.SuspendLayout();
             this.updProperties1.SuspendLayout();
@@ -466,6 +466,24 @@
             this.updProperties1.Size = new System.Drawing.Size(344, 630);
             this.updProperties1.TabIndex = 17;
             this.updProperties1.Visible = false;
+            // 
+            // updatePropertiesBack1
+            // 
+            this.updatePropertiesBack1.Animated = true;
+            this.updatePropertiesBack1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.updatePropertiesBack1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.updatePropertiesBack1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.updatePropertiesBack1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.updatePropertiesBack1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
+            this.updatePropertiesBack1.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.updatePropertiesBack1.ForeColor = System.Drawing.Color.White;
+            this.updatePropertiesBack1.Location = new System.Drawing.Point(21, 554);
+            this.updatePropertiesBack1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updatePropertiesBack1.Name = "updatePropertiesBack1";
+            this.updatePropertiesBack1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.updatePropertiesBack1.Size = new System.Drawing.Size(61, 57);
+            this.updatePropertiesBack1.TabIndex = 17;
+            this.updatePropertiesBack1.Text = "🔙";
             // 
             // updatePropertiesClose1
             // 
@@ -907,7 +925,7 @@
             // updPropertiesFirst
             // 
             this.updPropertiesFirst.BackColor = System.Drawing.Color.White;
-            this.updPropertiesFirst.Controls.Add(this.guna2Button1);
+            this.updPropertiesFirst.Controls.Add(this.copyClip);
             this.updPropertiesFirst.Controls.Add(this.txtBookingLink);
             this.updPropertiesFirst.Controls.Add(this.delBtnProperties);
             this.updPropertiesFirst.Controls.Add(this.guna2CircleButton1);
@@ -926,6 +944,45 @@
             this.updPropertiesFirst.Size = new System.Drawing.Size(344, 630);
             this.updPropertiesFirst.TabIndex = 21;
             this.updPropertiesFirst.Visible = false;
+            // 
+            // copyClip
+            // 
+            this.copyClip.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.copyClip.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.copyClip.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.copyClip.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.copyClip.FillColor = System.Drawing.Color.Transparent;
+            this.copyClip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.copyClip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
+            this.copyClip.Location = new System.Drawing.Point(268, 316);
+            this.copyClip.Name = "copyClip";
+            this.copyClip.Size = new System.Drawing.Size(35, 33);
+            this.copyClip.TabIndex = 19;
+            this.copyClip.Text = "📋";
+            // 
+            // txtBookingLink
+            // 
+            this.txtBookingLink.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
+            this.txtBookingLink.BorderRadius = 5;
+            this.txtBookingLink.BorderThickness = 2;
+            this.txtBookingLink.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBookingLink.DefaultText = "";
+            this.txtBookingLink.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtBookingLink.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtBookingLink.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBookingLink.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBookingLink.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBookingLink.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtBookingLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
+            this.txtBookingLink.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBookingLink.Location = new System.Drawing.Point(17, 306);
+            this.txtBookingLink.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBookingLink.Name = "txtBookingLink";
+            this.txtBookingLink.PlaceholderText = "Link here";
+            this.txtBookingLink.ReadOnly = true;
+            this.txtBookingLink.SelectedText = "";
+            this.txtBookingLink.Size = new System.Drawing.Size(297, 48);
+            this.txtBookingLink.TabIndex = 18;
             // 
             // delBtnProperties
             // 
@@ -1036,63 +1093,6 @@
             this.label25.TabIndex = 0;
             this.label25.Text = "Update Property";
             // 
-            // updatePropertiesBack1
-            // 
-            this.updatePropertiesBack1.Animated = true;
-            this.updatePropertiesBack1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.updatePropertiesBack1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.updatePropertiesBack1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.updatePropertiesBack1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.updatePropertiesBack1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.updatePropertiesBack1.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.updatePropertiesBack1.ForeColor = System.Drawing.Color.White;
-            this.updatePropertiesBack1.Location = new System.Drawing.Point(21, 554);
-            this.updatePropertiesBack1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.updatePropertiesBack1.Name = "updatePropertiesBack1";
-            this.updatePropertiesBack1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.updatePropertiesBack1.Size = new System.Drawing.Size(61, 57);
-            this.updatePropertiesBack1.TabIndex = 17;
-            this.updatePropertiesBack1.Text = "🔙";
-            // 
-            // txtBookingLink
-            // 
-            this.txtBookingLink.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.txtBookingLink.BorderRadius = 5;
-            this.txtBookingLink.BorderThickness = 2;
-            this.txtBookingLink.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtBookingLink.DefaultText = "";
-            this.txtBookingLink.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtBookingLink.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtBookingLink.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtBookingLink.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtBookingLink.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBookingLink.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtBookingLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.txtBookingLink.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBookingLink.Location = new System.Drawing.Point(17, 306);
-            this.txtBookingLink.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtBookingLink.Name = "txtBookingLink";
-            this.txtBookingLink.PlaceholderText = "Link here";
-            this.txtBookingLink.ReadOnly = true;
-            this.txtBookingLink.SelectedText = "";
-            this.txtBookingLink.Size = new System.Drawing.Size(297, 48);
-            this.txtBookingLink.TabIndex = 18;
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.guna2Button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
-            this.guna2Button1.Location = new System.Drawing.Point(268, 316);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(35, 33);
-            this.guna2Button1.TabIndex = 19;
-            this.guna2Button1.Text = "📋";
-            // 
             // PropertiesUpdateControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1187,7 +1187,7 @@
         private System.Windows.Forms.Label label24;
         public Guna.UI2.WinForms.Guna2ComboBox availabilityCmb;
         private System.Windows.Forms.Label label25;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        public Guna.UI2.WinForms.Guna2Button copyClip;
         public Guna.UI2.WinForms.Guna2TextBox txtBookingLink;
     }
 }

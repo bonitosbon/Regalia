@@ -8,14 +8,14 @@ namespace Regalia_Front_End
     public class PropertyCardManager
     {
         #region Private Fields
-        private FlowLayoutPanel cardContainer;
         private List<PropertyCard> propertyCards;
         private PropertiesControl propertiesControl;
         private const int CARDS_PER_ROW = 3;
         private const int CARD_SPACING = 25;
         #endregion
-
+        
         #region Public Properties
+        public FlowLayoutPanel cardContainer { get; private set; }
         public int CardCount => propertyCards.Count;
         public bool HasCards => propertyCards.Count > 0;
         #endregion
@@ -91,49 +91,20 @@ namespace Regalia_Front_End
                 cardContainer.Enabled = true;
                 cardContainer.TabStop = false;
                 
-                // Debug: Check cardContainer position and size
-                System.Diagnostics.Debug.WriteLine($"CardContainer - Location: {cardContainer.Location}, Size: {cardContainer.Size}, Bounds: {cardContainer.Bounds}, Parent: {cardContainer.Parent?.Name}");
-                System.Diagnostics.Debug.WriteLine($"NewCard - Location: {newCard.Location}, Size: {newCard.Size}, Bounds: {newCard.Bounds}, Parent: {newCard.Parent?.Name}");
-                System.Diagnostics.Debug.WriteLine($"PropertiesControl - Bounds: {propertiesControl.Bounds}, ClientSize: {propertiesControl.ClientSize}");
-                
-                // Check all controls in PropertiesControl
-                System.Diagnostics.Debug.WriteLine($"PropertiesControl has {propertiesControl.Controls.Count} controls:");
-                foreach (Control ctrl in propertiesControl.Controls)
-                {
-                    System.Diagnostics.Debug.WriteLine($"  - {ctrl.Name ?? "(no name)"} ({ctrl.GetType().Name}) - Location: {ctrl.Location}, Size: {ctrl.Size}, Visible: {ctrl.Visible}, Enabled: {ctrl.Enabled}, Dock: {ctrl.Dock}");
-                }
-                
                 // CRITICAL CHECK: Is containerPanel still blocking?
                 if (propertiesControl.containerPanel != null)
                 {
-                    bool isInControls = propertiesControl.Controls.Contains(propertiesControl.containerPanel);
-                    System.Diagnostics.Debug.WriteLine($"CRITICAL: containerPanel still in Controls: {isInControls}, Enabled: {propertiesControl.containerPanel.Enabled}, Visible: {propertiesControl.containerPanel.Visible}");
-                    if (isInControls)
+                    if (propertiesControl.Controls.Contains(propertiesControl.containerPanel))
                     {
-                        System.Diagnostics.Debug.WriteLine("ERROR: containerPanel is still in Controls collection! This will block all clicks!");
                         // Force remove it again
                         propertiesControl.Controls.Remove(propertiesControl.containerPanel);
-                        System.Diagnostics.Debug.WriteLine("Force removed containerPanel again. New count: " + propertiesControl.Controls.Count);
                     }
                 }
                 
                 // But bring the new card to front within its container
                 newCard.BringToFront();
                 
-                // Refresh layout
-                RefreshLayout();
-                cardContainer.Invalidate();
-                cardContainer.Update();
-                newCard.Invalidate();
-                newCard.Update();
-                
-                // Debug output
-                System.Diagnostics.Debug.WriteLine($"Card added: {propertyData.Title}, Container controls: {cardContainer.Controls.Count}, Card visible: {newCard.Visible}, Card size: {newCard.Size}");
-                System.Diagnostics.Debug.WriteLine($"PropertiesControl visible: {propertiesControl.Visible}, CardContainer visible: {cardContainer.Visible}, CardContainer parent: {cardContainer.Parent?.Name}");
-                
-                // Force a refresh to make sure the card appears
-                propertiesControl.Refresh();
-                cardContainer.Refresh();
+                // Refresh layout (will be done in batch when ResumeLayout is called)
             }
             catch (Exception ex)
             {
@@ -230,7 +201,7 @@ namespace Regalia_Front_End
         private void InitializeCardContainer()
         {
             // Restore original FlowLayoutPanel container
-            cardContainer = new FlowLayoutPanel
+            this.cardContainer = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.LeftToRight,
@@ -279,6 +250,17 @@ namespace Regalia_Front_End
         private PropertyCard CreatePropertyCard(PropertyData propertyData)
         {
             PropertyCard newCard = new PropertyCard(propertyData);
+            
+            // Store condo ID in card for update/delete operations
+            newCard.CondoId = propertyData.CondoId;
+            
+            // Ensure PropertyData also has CondoId set
+            if (newCard.PropertyData != null && newCard.PropertyData.CondoId == 0 && propertyData.CondoId > 0)
+            {
+                newCard.PropertyData.CondoId = propertyData.CondoId;
+            }
+            
+            System.Diagnostics.Debug.WriteLine($"CreatePropertyCard: Created card for {propertyData.Title}, CondoId = {newCard.CondoId}, PropertyData.CondoId = {newCard.PropertyData?.CondoId ?? 0}");
             
             // Ensure card is visible and properly sized
             newCard.Visible = true;

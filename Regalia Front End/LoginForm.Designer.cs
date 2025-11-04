@@ -482,6 +482,7 @@
             this.loginPasswordTxtBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.loginPasswordTxtBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.loginPasswordTxtBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.loginPasswordTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(183)))), ((int)(((byte)(135)))));
             this.loginPasswordTxtBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.loginPasswordTxtBox.Location = new System.Drawing.Point(21, 141);
             this.loginPasswordTxtBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

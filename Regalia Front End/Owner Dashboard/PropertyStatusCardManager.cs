@@ -9,14 +9,14 @@ namespace Regalia_Front_End
     public class PropertyStatusCardManager
     {
         #region Private Fields
-        private Panel statusCardContainer;
         private List<PropertyStatusCard> statusCards;
         private Label totalPropertyLabel;
         private const int CARD_SPACING = 10;
         private const int CARD_HEIGHT = 80;
         #endregion
-
+        
         #region Public Properties
+        public Panel statusCardContainer { get; private set; }
         public int CardCount => statusCards.Count;
         #endregion
 
@@ -28,7 +28,7 @@ namespace Regalia_Front_End
             if (totalLabel == null)
                 throw new ArgumentNullException(nameof(totalLabel));
 
-            statusCardContainer = container;
+            this.statusCardContainer = container;
             totalPropertyLabel = totalLabel;
             statusCards = new List<PropertyStatusCard>();
             UpdateTotalPropertyCount();
@@ -40,6 +40,22 @@ namespace Regalia_Front_End
         {
             try
             {
+                // Check for duplicates - don't add if already exists
+                foreach (var existingCard in statusCards)
+                {
+                    if (existingCard != null && 
+                        existingCard.UnitName == unitName && 
+                        existingCard.PropertyLocation == location)
+                    {
+                        // Card already exists, just update status if different
+                        if (existingCard.Status != status)
+                        {
+                            existingCard.Status = status;
+                        }
+                        return;
+                    }
+                }
+                
                 // Create new status card
                 PropertyStatusCard newCard = new PropertyStatusCard();
                 newCard.UnitName = unitName ?? "Unknown Unit";
@@ -62,8 +78,6 @@ namespace Regalia_Front_End
                 
                 // Update total count
                 UpdateTotalPropertyCount();
-                
-                System.Diagnostics.Debug.WriteLine($"PropertyStatusCard added: {unitName} - {location}. Total cards: {statusCards.Count}");
             }
             catch (Exception ex)
             {

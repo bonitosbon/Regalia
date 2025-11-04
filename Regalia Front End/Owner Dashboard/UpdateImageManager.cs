@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Regalia_Front_End.Owner_Dashboard;
+using Regalia_Front_End.Helpers;
 
 namespace Regalia_Front_End
 {
@@ -47,10 +48,26 @@ namespace Regalia_Front_End
         {
             if (imageIndex < 1 || imageIndex > 4) return;
 
-            if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+            if (!string.IsNullOrEmpty(imagePath))
             {
-                imagePaths[imageIndex - 1] = imagePath;
-                DisplayImageInPanel(imageIndex, imagePath);
+                // Check if it's a base64 data URI or a file path
+                bool isValidPath = false;
+                if (imagePath.StartsWith("data:image/"))
+                {
+                    // It's a base64 image, we can display it
+                    isValidPath = true;
+                }
+                else if (File.Exists(imagePath))
+                {
+                    // It's a valid file path
+                    isValidPath = true;
+                }
+
+                if (isValidPath)
+                {
+                    imagePaths[imageIndex - 1] = imagePath;
+                    DisplayImageInPanel(imageIndex, imagePath);
+                }
             }
         }
 
@@ -169,7 +186,16 @@ namespace Regalia_Front_End
                     };
 
                     // Load and display the image
-                    pictureBox.Image = Image.FromFile(imagePath);
+                    if (imagePath.StartsWith("data:image/"))
+                    {
+                        // Convert base64 to Image
+                        pictureBox.Image = ImageBase64Helper.ConvertBase64ToImage(imagePath);
+                    }
+                    else
+                    {
+                        // Load from file path
+                        pictureBox.Image = Image.FromFile(imagePath);
+                    }
 
                     // Add PictureBox to the panel
                     panel.Controls.Add(pictureBox);

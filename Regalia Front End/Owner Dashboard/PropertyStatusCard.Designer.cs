@@ -36,6 +36,7 @@
             // propStatCard
             // 
             this.propStatCard.AutoSize = true;
+            this.propStatCard.BackColor = System.Drawing.Color.Transparent;
             this.propStatCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.propStatCard.ForeColor = System.Drawing.Color.White;
             this.propStatCard.Location = new System.Drawing.Point(17, 11);
@@ -47,9 +48,10 @@
             // propertyStatusLoc
             // 
             this.propertyStatusLoc.AutoSize = true;
+            this.propertyStatusLoc.BackColor = System.Drawing.Color.Transparent;
             this.propertyStatusLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.propertyStatusLoc.ForeColor = System.Drawing.Color.Gray;
-            this.propertyStatusLoc.Location = new System.Drawing.Point(18, 33);
+            this.propertyStatusLoc.ForeColor = System.Drawing.Color.White;
+            this.propertyStatusLoc.Location = new System.Drawing.Point(18, 43);
             this.propertyStatusLoc.Name = "propertyStatusLoc";
             this.propertyStatusLoc.Size = new System.Drawing.Size(44, 16);
             this.propertyStatusLoc.TabIndex = 1;
@@ -58,9 +60,10 @@
             // statusLblYes
             // 
             this.statusLblYes.AutoSize = true;
+            this.statusLblYes.BackColor = System.Drawing.Color.Transparent;
             this.statusLblYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusLblYes.ForeColor = System.Drawing.Color.Gray;
-            this.statusLblYes.Location = new System.Drawing.Point(18, 49);
+            this.statusLblYes.ForeColor = System.Drawing.Color.Transparent;
+            this.statusLblYes.Location = new System.Drawing.Point(180, 24);
             this.statusLblYes.Name = "statusLblYes";
             this.statusLblYes.Size = new System.Drawing.Size(44, 16);
             this.statusLblYes.TabIndex = 2;
@@ -70,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.statusLblYes);
             this.Controls.Add(this.propertyStatusLoc);
             this.Controls.Add(this.propStatCard);

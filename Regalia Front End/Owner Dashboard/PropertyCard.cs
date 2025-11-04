@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 
@@ -19,6 +20,7 @@ namespace Regalia_Front_End
 
         #region Public Properties
         public PropertyData PropertyData { get; private set; }
+        public int CondoId { get; set; } = 0; // Store condo ID from database
         public string UnitName 
         { 
             get => unitLbl.Text; 
@@ -92,6 +94,8 @@ namespace Regalia_Front_End
             if (newData == null) return;
             
             PropertyData = newData;
+            CondoId = newData.CondoId; // Preserve condo ID
+            Status = newData.Status ?? "Available"; // Update status
             LoadPropertyData();
         }
 
@@ -101,7 +105,25 @@ namespace Regalia_Front_End
             {
                 if (!string.IsNullOrEmpty(imagePath))
                 {
-                    guna2PictureBox1.Image = Image.FromFile(imagePath);
+                    // Check if it's a base64 data URI
+                    if (imagePath.StartsWith("data:image/"))
+                    {
+                        // Convert base64 to Image
+                        guna2PictureBox1.Image = Helpers.ImageBase64Helper.ConvertBase64ToImage(imagePath);
+                        System.Diagnostics.Debug.WriteLine($"PropertyCard: Successfully loaded Base64 image");
+                    }
+                    else if (File.Exists(imagePath))
+                    {
+                        // It's a file path, load normally
+                        guna2PictureBox1.Image = Image.FromFile(imagePath);
+                        System.Diagnostics.Debug.WriteLine($"PropertyCard: Successfully loaded image from file: {imagePath}");
+                    }
+                    else
+                    {
+                        // Might be a URL or invalid path - try next image
+                        System.Diagnostics.Debug.WriteLine($"PropertyCard: Image path not found or invalid: {imagePath}");
+                        guna2PictureBox1.Image = null;
+                    }
                 }
                 else
                 {
@@ -128,11 +150,33 @@ namespace Regalia_Front_End
             // Set property type from location/combo box
             PropertyType = PropertyData.Location ?? "Studio Type";
             
-            // Set default status
-            Status = "Available";
+            // Set status from PropertyData, or use current status if PropertyData.Status is empty
+            if (!string.IsNullOrWhiteSpace(PropertyData.Status))
+            {
+                Status = PropertyData.Status;
+            }
+            else if (string.IsNullOrWhiteSpace(Status))
+            {
+                Status = "Available"; // Default only if both are empty
+            }
             
-            // Load first image if available
-            SetImage(PropertyData.Image1Path);
+            // Load first available image - try all images in order
+            if (!string.IsNullOrEmpty(PropertyData.Image1Path))
+            {
+                SetImage(PropertyData.Image1Path);
+            }
+            else if (!string.IsNullOrEmpty(PropertyData.Image2Path))
+            {
+                SetImage(PropertyData.Image2Path);
+            }
+            else if (!string.IsNullOrEmpty(PropertyData.Image3Path))
+            {
+                SetImage(PropertyData.Image3Path);
+            }
+            else if (!string.IsNullOrEmpty(PropertyData.Image4Path))
+            {
+                SetImage(PropertyData.Image4Path);
+            }
         }
 
         private void WireUpChildControlClicks()
@@ -376,6 +420,7 @@ namespace Regalia_Front_End
     public class PropertyData
     {
         #region Public Properties
+        public int CondoId { get; set; } = 0; // Store condo ID from database
         public string Title { get; set; }
         public string Price { get; set; }
         public string Location { get; set; }
@@ -387,6 +432,8 @@ namespace Regalia_Front_End
         public string Image3Path { get; set; }
         public string Image4Path { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Status { get; set; } = "Available"; // Store status
+        public string BookingLink { get; set; } // Booking link for guest booking page
         #endregion
 
         #region Constructor

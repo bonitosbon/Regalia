@@ -36,6 +36,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
@@ -54,12 +64,22 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.11\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.11\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimationManager.cs" />
+    <Compile Include="Models\BookingResponse.cs" />
+    <Compile Include="Models\CondoResponse.cs" />
+    <Compile Include="Models\CreateCondoDto.cs" />
     <Compile Include="Models\LoginDto.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\RegisterDto.cs" />
+    <Compile Include="Models\UpdateCondoDto.cs" />
     <Compile Include="Owner Dashboard\PropertyStatusCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,12 +112,14 @@
     <Compile Include="Front Desk Dashboard\FrontDashboardUpcomingBooking.Designer.cs">
       <DependentUpon>FrontDashboardUpcomingBooking.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front Desk Dashboard\QRScannerManager.cs" />
     <Compile Include="Owner Dashboard\BookingControlCards.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Owner Dashboard\BookingControlCards.Designer.cs">
       <DependentUpon>BookingControlCards.cs</DependentUpon>
     </Compile>
+    <Compile Include="Owner Dashboard\BookingCardManager.cs" />
     <Compile Include="Owner Dashboard\PropertiesUpdateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +132,7 @@
     <Compile Include="PrincipalFront.Designer.cs">
       <DependentUpon>PrincipalFront.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ImageBase64Helper.cs" />
     <Compile Include="Owner Dashboard\PropertyFormManager.cs" />
     <Compile Include="Owner Dashboard\ImageManager.cs" />
     <Compile Include="Owner Dashboard\UpdatePropertyFormManager.cs" />
@@ -147,12 +170,6 @@
     <Compile Include="Owner Dashboard\PropertiesControl.Designer.cs">
       <DependentUpon>PropertiesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Owner Dashboard\FinancialControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Owner Dashboard\FinancialControl.Designer.cs">
-      <DependentUpon>FinancialControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Owner Dashboard\PropertyCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front Desk Dashboard\frontDashboard.resx">
       <DependentUpon>frontDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front Desk Dashboard\FrontDashboardUpcomingBooking.resx">
+      <DependentUpon>FrontDashboardUpcomingBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Owner Dashboard\BookingControlCards.resx">
       <DependentUpon>BookingControlCards.cs</DependentUpon>
@@ -187,9 +207,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Owner Dashboard\PropertiesControl.resx">
       <DependentUpon>PropertiesControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Owner Dashboard\FinancialControl.resx">
-      <DependentUpon>FinancialControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Owner Dashboard\PropertyCard.resx">
       <DependentUpon>PropertyCard.cs</DependentUpon>

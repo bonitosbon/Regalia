@@ -15,6 +15,13 @@ namespace Regalia_Front_End
         public BookingControl()
         {
             InitializeComponent();
+            // Hide bookingInformationPnl initially - it should only show when a card is clicked
+            bookingInformationPnl.Visible = false;
+            // Remove from this control so it can be added to main form for animation
+            if (this.Controls.Contains(bookingInformationPnl))
+            {
+                this.Controls.Remove(bookingInformationPnl);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)

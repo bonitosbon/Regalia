@@ -1,7 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using Regalia_Front_End.Models;
+using Regalia_Front_End.Services;
+using Regalia_Front_End.Helpers;
+using System.Threading.Tasks;
 
 namespace Regalia_Front_End
 {
@@ -98,36 +104,14 @@ namespace Regalia_Front_End
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                System.Diagnostics.Debug.WriteLine("About to call AddPropertyCard");
                 
-                // Create property card - this is the original working function
-                cardManager.AddPropertyCard(propertyData);
-                
-                System.Diagnostics.Debug.WriteLine("AddPropertyCard completed");
-                
-                // Add property status card to dashboard
-                if (statusCardManager != null)
-                {
-                    statusCardManager.AddPropertyStatusCard(propertyData.Title, propertyData.Location);
-                    System.Diagnostics.Debug.WriteLine($"PropertyStatusCard added: {propertyData.Title} - {propertyData.Location}");
-                }
-                
-                // Ensure PropertiesControl is visible so cards show
-                propertiesControl.Visible = true;
-                propertiesControl.Show();
-                propertiesControl.BringToFront();
-                
-                // Don't clear form data yet - we'll do it after front desk account is created
-                // ClearFormData(); - Commented out for now
+                // Store property data temporarily (we'll save to DB when front desk account is created)
+                // The property card will be created after successful API call in SubmitFrontDeskAccount
                 
                 if (navigateToPage4)
                 {
-                    // Navigate to page 4 (front desk account creation) instead of closing
-                    // Cards will remain visible in the background behind page 4
+                    // Navigate to page 4 (front desk account creation)
                     ShowProperties4();
-                    
-                    // After showing page 4, bring page 4 to front but keep cards visible
                     propertiesControl.addProperties4.BringToFront();
                 }
             }
@@ -139,29 +123,378 @@ namespace Regalia_Front_End
             }
         }
 
-        public void SubmitFrontDeskAccount()
+        public async void SubmitFrontDeskAccount()
         {
             try
             {
-                // TODO: Collect front desk account data from addProperties4 textboxes
-                // TODO: Validate required fields (username, password, email, etc.)
-                // TODO: Save/create front desk account and link to the property created on page 3
+                // Collect property data from pages 1-3
+                PropertyData propertyData = CollectFormData();
                 
-                // Clear all form data (property + front desk) after successful submission
+                // Validate property data
+                if (string.IsNullOrWhiteSpace(propertyData.Title))
+                {
+                    MessageBox.Show("Please enter a property title (Unit Name/No.).", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                if (string.IsNullOrWhiteSpace(propertyData.Location))
+                {
+                    MessageBox.Show("Please enter a property location.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                if (string.IsNullOrWhiteSpace(propertyData.Price))
+                {
+                    MessageBox.Show("Please enter a property price.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                // Collect front desk account data from addProperties4
+                string frontDeskUsername = propertiesControl.frontDeskUsername.Text?.Trim() ?? string.Empty;
+                string frontDeskPassword = propertiesControl.frontDeskPwd.Text?.Trim() ?? string.Empty;
+                string confirmPassword = propertiesControl.confirmFrontDeskPwd.Text?.Trim() ?? string.Empty;
+                
+                // Validate front desk data
+                if (string.IsNullOrEmpty(frontDeskUsername))
+                {
+                    MessageBox.Show("Please enter a front desk username.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                if (string.IsNullOrEmpty(frontDeskPassword))
+                {
+                    MessageBox.Show("Please enter a front desk password.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                if (frontDeskPassword != confirmPassword)
+                {
+                    MessageBox.Show("Passwords do not match. Please confirm the password.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                if (frontDeskPassword.Length < 6)
+                {
+                    MessageBox.Show("Password must be at least 6 characters long.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                // Validate username format
+                // Username should be alphanumeric with optional underscores/dots/hyphens
+                if (!System.Text.RegularExpressions.Regex.IsMatch(frontDeskUsername, @"^[a-zA-Z0-9_.-]+$"))
+                {
+                    MessageBox.Show("Username can only contain letters, numbers, underscores, dots, and hyphens.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                // Parse price
+                decimal pricePerNight;
+                if (!decimal.TryParse(propertyData.Price, out pricePerNight))
+                {
+                    MessageBox.Show("Please enter a valid price.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                // Combine all images into a comma-separated string (or use first image if only one)
+                // Convert images to base64 for web display
+                List<string> imageList = new List<string>();
+                if (!string.IsNullOrEmpty(propertyData.Image1Path)) 
+                {
+                    string base64Image1 = ImageBase64Helper.ConvertImageToBase64(propertyData.Image1Path);
+                    if (!string.IsNullOrEmpty(base64Image1)) imageList.Add(base64Image1);
+                }
+                if (!string.IsNullOrEmpty(propertyData.Image2Path)) 
+                {
+                    string base64Image2 = ImageBase64Helper.ConvertImageToBase64(propertyData.Image2Path);
+                    if (!string.IsNullOrEmpty(base64Image2)) imageList.Add(base64Image2);
+                }
+                if (!string.IsNullOrEmpty(propertyData.Image3Path)) 
+                {
+                    string base64Image3 = ImageBase64Helper.ConvertImageToBase64(propertyData.Image3Path);
+                    if (!string.IsNullOrEmpty(base64Image3)) imageList.Add(base64Image3);
+                }
+                if (!string.IsNullOrEmpty(propertyData.Image4Path)) 
+                {
+                    string base64Image4 = ImageBase64Helper.ConvertImageToBase64(propertyData.Image4Path);
+                    if (!string.IsNullOrEmpty(base64Image4)) imageList.Add(base64Image4);
+                }
+                
+                // Use first image as primary ImageUrl, store all in Description or Amenities if needed
+                string primaryImageUrl = imageList.Count > 0 ? imageList[0] : string.Empty;
+                
+                // Combine all images into Description or add to Amenities
+                string fullDescription = propertyData.Bathrooms ?? string.Empty;
+                if (imageList.Count > 1)
+                {
+                    string additionalImages = string.Join(", ", imageList.Skip(1));
+                    if (!string.IsNullOrEmpty(fullDescription))
+                        fullDescription += $" | Additional Images: {additionalImages}";
+                    else
+                        fullDescription = $"Additional Images: {additionalImages}";
+                }
+                
+                // Create DTO for API
+                CreateCondoDto condoDto = new CreateCondoDto
+                {
+                    Name = propertyData.Title,
+                    Location = propertyData.Location,
+                    Description = fullDescription, // Description includes room type, check-in/out, and additional images
+                    Amenities = propertyData.Bedrooms ?? string.Empty, // Rules/Amenities from form
+                    MaxGuests = 4, // Default value
+                    PricePerNight = pricePerNight,
+                    ImageUrl = primaryImageUrl, // Primary (first) image
+                    FrontDeskUsername = frontDeskUsername,
+                    FrontDeskPassword = frontDeskPassword
+                };
+                
+                // Call API to create condo (this also creates front desk account)
+                using (var apiService = new ApiService())
+                {
+                    await apiService.CreateCondoAsync(condoDto);
+                }
+                
+                // If we get here, the API call was successful
+                // Reload all properties from API to ensure consistency
+                await LoadPropertiesFromApiAsync();
+                
+                // Clear all form data after successful submission
                 ClearFormData();
                 ClearFrontDeskFormData();
                 
+                // Close the form first
+                HideFormWithAnimation(propertiesControl.addProperties4);
+                
+                // Show success message
                 MessageBox.Show("Property and front desk account created successfully!", "Success", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-                // Close the form
-                HideFormWithAnimation(propertiesControl.addProperties4);
+                // Ensure cards are visible and brought to front
+                if (cardManager != null)
+                {
+                    cardManager.BringCardContainerToFront();
+                    propertiesControl.Refresh();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error creating front desk account: {ex.Message}", "Error", 
+                System.Diagnostics.Debug.WriteLine($"Exception in SubmitFrontDeskAccount: {ex.Message}\n{ex.StackTrace}");
+                
+                // Check if it's a duplicate front desk username error
+                string errorMessage = ex.Message;
+                if (errorMessage.Contains("already taken") || errorMessage.Contains("already exists"))
+                {
+                    errorMessage = "This front desk username is already taken. Please choose a different username.";
+                }
+                else if (errorMessage.Contains("already in use"))
+                {
+                    errorMessage = "This front desk username is already in use. Please choose a different username.";
+                }
+                
+                MessageBox.Show($"Error creating property: {errorMessage}", "Error", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Loads all properties from the API and displays them as cards
+        /// </summary>
+        public async Task LoadPropertiesFromApiAsync()
+        {
+            try
+            {
+                using (var apiService = new ApiService())
+                {
+                    List<CondoResponse> condos = await apiService.GetOwnerCondosAsync();
+                    
+                    // Clear existing cards and status cards first
+                    if (statusCardManager != null)
+                    {
+                        statusCardManager.ClearAllCards();
+                    }
+                    cardManager.ClearAllCards();
+                    
+                    if (condos == null || condos.Count == 0)
+                    {
+                        // No properties yet - that's fine, already cleared
+                        return;
+                    }
+                    
+                    // Suspend layout for smooth loading
+                    propertiesControl.SuspendLayout();
+                    if (cardManager.cardContainer != null)
+                    {
+                        cardManager.cardContainer.SuspendLayout();
+                        cardManager.cardContainer.Visible = false; // Hide during load to prevent flicker
+                    }
+                    if (statusCardManager?.statusCardContainer != null)
+                    {
+                        statusCardManager.statusCardContainer.SuspendLayout();
+                    }
+                    
+                    try
+                    {
+                        // Collect valid property data first
+                        List<PropertyData> validProperties = new List<PropertyData>();
+                        
+                        foreach (var condo in condos)
+                        {
+                            // Skip if condo data is invalid
+                            if (string.IsNullOrWhiteSpace(condo.Name))
+                            {
+                                continue;
+                            }
+                            
+                            PropertyData propertyData = ConvertCondoToPropertyData(condo);
+                            
+                            // Validate property data before creating card
+                            if (!propertyData.IsValid())
+                            {
+                                continue;
+                            }
+                            
+                            validProperties.Add(propertyData);
+                        }
+                        
+                        // Add all property cards at once (smooth loading)
+                        foreach (var propertyData in validProperties)
+                        {
+                            cardManager.AddPropertyCard(propertyData);
+                        }
+                        
+                        // Add all status cards at once
+                        if (statusCardManager != null)
+                        {
+                            foreach (var propertyData in validProperties)
+                            {
+                                if (!string.IsNullOrWhiteSpace(propertyData.Title) && !string.IsNullOrWhiteSpace(propertyData.Location))
+                                {
+                                    statusCardManager.AddPropertyStatusCard(propertyData.Title, propertyData.Location, propertyData.Status);
+                                }
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        // Resume layout and refresh UI
+                        if (statusCardManager?.statusCardContainer != null)
+                        {
+                            statusCardManager.statusCardContainer.ResumeLayout(false);
+                            statusCardManager.statusCardContainer.PerformLayout();
+                        }
+                        if (cardManager.cardContainer != null)
+                        {
+                            cardManager.cardContainer.ResumeLayout(false);
+                            cardManager.cardContainer.PerformLayout();
+                            cardManager.cardContainer.Visible = true; // Show after loading
+                        }
+                        propertiesControl.ResumeLayout(false);
+                        propertiesControl.PerformLayout();
+                    }
+                    
+                    // Ensure cards are visible and refresh the UI
+                    if (cardManager != null)
+                    {
+                        cardManager.BringCardContainerToFront();
+                    }
+                    
+                    propertiesControl.Refresh();
+                    propertiesControl.Invalidate();
+                    
+                    // Refresh dashboard counts if parent form is Principal and has dashboard control
+                    if (parentForm is Principal principal && principal.dashboardControl != null)
+                    {
+                        _ = principal.dashboardControl.LoadDashboardCountsAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading properties from API: {ex.Message}\n{ex.StackTrace}");
+                MessageBox.Show($"Error loading properties: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        
+        /// <summary>
+        /// Loads all properties from the API and displays them as cards (fire-and-forget version)
+        /// </summary>
+        public void LoadPropertiesFromApi()
+        {
+            // Fire and forget - don't await
+            _ = LoadPropertiesFromApiAsync();
+        }
+
+        /// <summary>
+        /// Converts a CondoResponse from API to PropertyData for display
+        /// </summary>
+        private PropertyData ConvertCondoToPropertyData(CondoResponse condo)
+        {
+            PropertyData data = new PropertyData
+            {
+                CondoId = condo.Id, // Store condo ID for update/delete operations
+                Title = !string.IsNullOrWhiteSpace(condo.Name) ? condo.Name : "Unnamed Property",
+                Location = !string.IsNullOrWhiteSpace(condo.Location) ? condo.Location : "Unknown Location",
+                Price = condo.PricePerNight > 0 ? condo.PricePerNight.ToString("F2") : "0.00",
+                Bathrooms = condo.Description ?? string.Empty, // Description
+                Bedrooms = condo.Amenities ?? string.Empty, // Amenities/Rules
+                Image1Path = condo.ImageUrl ?? string.Empty, // Primary image
+                Area = "N/A",
+                Status = condo.Status ?? "Available",
+                BookingLink = condo.BookingLink ?? string.Empty, // Booking link
+                CreatedDate = DateTime.Now // Could parse CreatedAt if needed
+            };
+            
+            // Extract additional images (2-4) from description
+            // Images are stored as: "Description text | Additional Images: data:image/xxx, data:image/yyy, data:image/zzz"
+            if (!string.IsNullOrEmpty(condo.Description))
+            {
+                string description = condo.Description;
+                string additionalImagesPrefix = "Additional Images:";
+                int additionalImagesIndex = description.IndexOf(additionalImagesPrefix, StringComparison.OrdinalIgnoreCase);
+                
+                if (additionalImagesIndex >= 0)
+                {
+                    // Extract the additional images part
+                    string additionalImagesText = description.Substring(additionalImagesIndex + additionalImagesPrefix.Length).Trim();
+                    
+                    // Split by ", data:image/" pattern to separate Base64 image strings
+                    string[] imageParts = System.Text.RegularExpressions.Regex.Split(additionalImagesText, @",\s*data:image/");
+                    
+                    if (imageParts.Length > 0)
+                    {
+                        // First image part needs "data:image/" prefix added back
+                        if (imageParts[0].Trim().StartsWith("data:image/"))
+                        {
+                            data.Image2Path = imageParts[0].Trim();
+                        }
+                        else
+                        {
+                            data.Image2Path = "data:image/" + imageParts[0].Trim();
+                        }
+                        
+                        // Remaining images already have the prefix in the split
+                        if (imageParts.Length > 1)
+                        {
+                            data.Image3Path = "data:image/" + imageParts[1].Trim();
+                        }
+                        if (imageParts.Length > 2)
+                        {
+                            data.Image4Path = "data:image/" + imageParts[2].Trim();
+                        }
+                    }
+                }
+            }
+            
+            return data;
         }
 
         #endregion
@@ -177,12 +510,42 @@ namespace Regalia_Front_End
             data.Price = propertiesControl.addPriceTxt.Text?.Trim(); // Price
             data.Location = propertiesControl.addLocationTxt.Text?.Trim(); // Location
             
-            // Room Type from combo box (if needed)
+            // Room Type from combo box - store it for later use
             string roomType = propertiesControl.addTypeCmb.SelectedItem?.ToString() ?? propertiesControl.addTypeCmb.Text?.Trim();
+            
+            // Check-in and Check-out times
+            string checkIn = propertiesControl.addInTxt.Text?.Trim() ?? string.Empty;
+            string checkOut = propertiesControl.addOutTxt.Text?.Trim() ?? string.Empty;
             
             // Collect data from addProperties2 (additional details)
             data.Bedrooms = propertiesControl.addRulesTxt.Text?.Trim(); // Rules (Bedrooms field)
             data.Bathrooms = propertiesControl.addDescTxt.Text?.Trim(); // Description (Bathrooms field)
+            
+            // Store Room Type, Check-in, and Check-out in a temporary field (we'll combine into Description or Amenities)
+            // Store them in the PropertyData for later use
+            if (!string.IsNullOrEmpty(roomType))
+            {
+                // If Description exists, prepend room type
+                if (string.IsNullOrEmpty(data.Bathrooms))
+                    data.Bathrooms = $"Room Type: {roomType}";
+                else
+                    data.Bathrooms = $"Room Type: {roomType} - {data.Bathrooms}";
+            }
+            
+            if (!string.IsNullOrEmpty(checkIn) || !string.IsNullOrEmpty(checkOut))
+            {
+                string checkTimes = string.Empty;
+                if (!string.IsNullOrEmpty(checkIn))
+                    checkTimes += $"Check-in: {checkIn}";
+                if (!string.IsNullOrEmpty(checkOut))
+                    checkTimes += (!string.IsNullOrEmpty(checkTimes) ? " | " : "") + $"Check-out: {checkOut}";
+                
+                // Add to Description (use separator instead of newline for better JSON compatibility)
+                if (string.IsNullOrEmpty(data.Bathrooms))
+                    data.Bathrooms = checkTimes;
+                else
+                    data.Bathrooms += $" | {checkTimes}";
+            }
             
             // Collect image paths from ImageManager
             data.Image1Path = imageManager.GetImagePath(1);
@@ -220,11 +583,10 @@ namespace Regalia_Front_End
 
         private void ClearFrontDeskFormData()
         {
-            // TODO: Clear all textboxes in addProperties4
-            // Example (adjust based on your actual control names):
-            // propertiesControl.frontDeskUsernameTxtBox.Text = "";
-            // propertiesControl.frontDeskPasswordTxtBox.Text = "";
-            // propertiesControl.frontDeskEmailTxtBox.Text = "";
+            // Clear all textboxes in addProperties4
+            propertiesControl.frontDeskUsername.Text = "";
+            propertiesControl.frontDeskPwd.Text = "";
+            propertiesControl.confirmFrontDeskPwd.Text = "";
         }
 
         #endregion

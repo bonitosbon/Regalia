@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.upcoming = new Guna.UI2.WinForms.Guna2Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.departure = new Guna.UI2.WinForms.Guna2Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.guna2Panel2.SuspendLayout();
-            this.guna2Panel1.SuspendLayout();
+            this.upcoming.SuspendLayout();
+            this.departure.SuspendLayout();
             this.SuspendLayout();
             // 
-            // guna2Panel2
+            // upcoming
             // 
-            this.guna2Panel2.AutoScroll = true;
-            this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel2.BorderRadius = 10;
-            this.guna2Panel2.Controls.Add(this.label6);
-            this.guna2Panel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel2.Location = new System.Drawing.Point(35, 18);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(374, 468);
-            this.guna2Panel2.TabIndex = 2;
+            this.upcoming.AutoScroll = true;
+            this.upcoming.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.upcoming.BorderRadius = 10;
+            this.upcoming.Controls.Add(this.label6);
+            this.upcoming.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.upcoming.Location = new System.Drawing.Point(35, 18);
+            this.upcoming.Name = "upcoming";
+            this.upcoming.Size = new System.Drawing.Size(374, 1336);
+            this.upcoming.TabIndex = 2;
             // 
             // label6
             // 
@@ -60,17 +60,17 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Upcoming Arrival";
             // 
-            // guna2Panel1
+            // departure
             // 
-            this.guna2Panel1.AutoScroll = true;
-            this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel1.BorderRadius = 10;
-            this.guna2Panel1.Controls.Add(this.label1);
-            this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel1.Location = new System.Drawing.Point(436, 18);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(373, 468);
-            this.guna2Panel1.TabIndex = 3;
+            this.departure.AutoScroll = true;
+            this.departure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.departure.BorderRadius = 10;
+            this.departure.Controls.Add(this.label1);
+            this.departure.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.departure.Location = new System.Drawing.Point(436, 18);
+            this.departure.Name = "departure";
+            this.departure.Size = new System.Drawing.Size(373, 1336);
+            this.departure.TabIndex = 3;
             // 
             // label1
             // 
@@ -89,23 +89,23 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.guna2Panel1);
-            this.Controls.Add(this.guna2Panel2);
+            this.Controls.Add(this.departure);
+            this.Controls.Add(this.upcoming);
             this.Name = "frontDashboard";
-            this.Size = new System.Drawing.Size(849, 502);
-            this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
-            this.guna2Panel1.ResumeLayout(false);
-            this.guna2Panel1.PerformLayout();
+            this.Size = new System.Drawing.Size(849, 1372);
+            this.upcoming.ResumeLayout(false);
+            this.upcoming.PerformLayout();
+            this.departure.ResumeLayout(false);
+            this.departure.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2Panel upcoming;
         private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel departure;
         private System.Windows.Forms.Label label1;
     }
 }

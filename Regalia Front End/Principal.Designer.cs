@@ -47,8 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.settingsBtn = new Guna.UI2.WinForms.Guna2Button();
             this.logOutBtn = new Guna.UI2.WinForms.Guna2Button();
-            this.messageBtn = new Guna.UI2.WinForms.Guna2Button();
-            this.financialBtn = new Guna.UI2.WinForms.Guna2Button();
             this.propertiesBtn = new Guna.UI2.WinForms.Guna2Button();
             this.bookingBtn = new Guna.UI2.WinForms.Guna2Button();
             this.dashboardBtn = new Guna.UI2.WinForms.Guna2Button();
@@ -142,8 +140,6 @@
             this.guna2Panel1.Controls.Add(this.label1);
             this.guna2Panel1.Controls.Add(this.settingsBtn);
             this.guna2Panel1.Controls.Add(this.logOutBtn);
-            this.guna2Panel1.Controls.Add(this.messageBtn);
-            this.guna2Panel1.Controls.Add(this.financialBtn);
             this.guna2Panel1.Controls.Add(this.propertiesBtn);
             this.guna2Panel1.Controls.Add(this.bookingBtn);
             this.guna2Panel1.Controls.Add(this.dashboardBtn);
@@ -202,40 +198,7 @@
             this.logOutBtn.TabIndex = 5;
             this.logOutBtn.Text = "❌   Log out";
             this.logOutBtn.UseTransparentBackground = true;
-            // 
-            // messageBtn
-            // 
-            this.messageBtn.Animated = true;
-            this.messageBtn.BorderRadius = 5;
-            this.messageBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.messageBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.messageBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.messageBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.messageBtn.FillColor = System.Drawing.Color.Transparent;
-            this.messageBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.messageBtn.ForeColor = System.Drawing.Color.White;
-            this.messageBtn.Location = new System.Drawing.Point(12, 326);
-            this.messageBtn.Name = "messageBtn";
-            this.messageBtn.Size = new System.Drawing.Size(241, 45);
-            this.messageBtn.TabIndex = 4;
-            this.messageBtn.Text = "💬    Message";
-            this.messageBtn.UseTransparentBackground = true;
-            // 
-            // financialBtn
-            // 
-            this.financialBtn.BorderRadius = 5;
-            this.financialBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.financialBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.financialBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.financialBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.financialBtn.FillColor = System.Drawing.Color.Transparent;
-            this.financialBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.financialBtn.ForeColor = System.Drawing.Color.White;
-            this.financialBtn.Location = new System.Drawing.Point(12, 275);
-            this.financialBtn.Name = "financialBtn";
-            this.financialBtn.Size = new System.Drawing.Size(241, 45);
-            this.financialBtn.TabIndex = 3;
-            this.financialBtn.Text = "💵    Financial";
+            this.logOutBtn.Click += new System.EventHandler(this.logOutBtn_Click);
             // 
             // propertiesBtn
             // 
@@ -321,8 +284,6 @@
         private Guna.UI2.WinForms.Guna2Button dashboardBtn;
         private Guna.UI2.WinForms.Guna2Button settingsBtn;
         private Guna.UI2.WinForms.Guna2Button logOutBtn;
-        private Guna.UI2.WinForms.Guna2Button messageBtn;
-        private Guna.UI2.WinForms.Guna2Button financialBtn;
         private Guna.UI2.WinForms.Guna2Button propertiesBtn;
         private Guna.UI2.WinForms.Guna2Button bookingBtn;
         private System.Windows.Forms.Label label1;

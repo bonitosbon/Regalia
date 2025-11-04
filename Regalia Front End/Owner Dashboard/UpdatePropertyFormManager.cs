@@ -1,8 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Regalia_Front_End.Owner_Dashboard;
+using Regalia_Front_End.Models;
+using Regalia_Front_End.Services;
+using Regalia_Front_End.Helpers;
+using System.Threading.Tasks;
 
 namespace Regalia_Front_End
 {
@@ -40,10 +46,23 @@ namespace Regalia_Front_End
 
         public void ShowUpdatePropertyForm(PropertyCard card)
         {
-            if (card == null || card.PropertyData == null) return;
+            if (card == null || card.PropertyData == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"ShowUpdatePropertyForm: card is null or PropertyData is null");
+                return;
+            }
 
             currentPropertyCard = card;
             originalPropertyData = card.PropertyData;
+            
+            // Ensure CondoId is set in PropertyData
+            if (originalPropertyData.CondoId == 0 && card.CondoId > 0)
+            {
+                originalPropertyData.CondoId = card.CondoId;
+                System.Diagnostics.Debug.WriteLine($"ShowUpdatePropertyForm: Set CondoId from card: {card.CondoId}");
+            }
+            
+            System.Diagnostics.Debug.WriteLine($"ShowUpdatePropertyForm: currentPropertyCard.CondoId = {currentPropertyCard.CondoId}, PropertyData.CondoId = {originalPropertyData.CondoId}");
 
             // Load property data into the update form
             LoadPropertyDataIntoForm(originalPropertyData);
@@ -108,13 +127,30 @@ namespace Regalia_Front_End
             HideFormWithAnimation(form);
         }
 
-        public void UpdateProperty()
+        public async void UpdateProperty()
         {
             try
             {
+                System.Diagnostics.Debug.WriteLine($"UpdateProperty called: currentPropertyCard = {currentPropertyCard != null}, CondoId = {currentPropertyCard?.CondoId ?? 0}, originalPropertyData.CondoId = {originalPropertyData?.CondoId ?? 0}");
+                
+                // Check if we have a valid property card
                 if (currentPropertyCard == null)
                 {
-                    MessageBox.Show("No property selected for update.", "Error",
+                    MessageBox.Show("No property selected for update. Please click on a property card first.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                // Get CondoId from card or PropertyData
+                int condoId = currentPropertyCard.CondoId;
+                if (condoId == 0 && originalPropertyData != null)
+                {
+                    condoId = originalPropertyData.CondoId;
+                }
+                
+                if (condoId == 0)
+                {
+                    MessageBox.Show("Property ID is missing. Please refresh the properties list and try again.", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -123,50 +159,120 @@ namespace Regalia_Front_End
                 PropertyData updatedData = CollectFormData();
 
                 // Validate required fields
-                if (string.IsNullOrEmpty(updatedData.Title))
+                if (string.IsNullOrWhiteSpace(updatedData.Title))
                 {
                     MessageBox.Show("Please enter a property title.", "Validation Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (string.IsNullOrEmpty(updatedData.Price))
+                if (string.IsNullOrWhiteSpace(updatedData.Location))
+                {
+                    MessageBox.Show("Please enter a property location.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(updatedData.Price))
                 {
                     MessageBox.Show("Please enter a property price.", "Validation Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Update the property card with new data
-                currentPropertyCard.UpdatePropertyData(updatedData);
-                
-                // Update status from availabilityCmb
+                // Parse price
+                decimal pricePerNight;
+                if (!decimal.TryParse(updatedData.Price, out pricePerNight))
+                {
+                    MessageBox.Show("Please enter a valid price.", "Validation Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get status from availabilityCmb
+                string newStatus = "Available";
                 if (updateControl.availabilityCmb.SelectedIndex >= 0)
                 {
-                    string newStatus = updateControl.availabilityCmb.SelectedItem?.ToString() ?? 
-                                      updateControl.availabilityCmb.Items[updateControl.availabilityCmb.SelectedIndex]?.ToString() ?? 
-                                      "Available";
-                    
-                    // Update PropertyCard status
-                    currentPropertyCard.Status = newStatus;
-                    
-                    // Update PropertyStatusCard status in dashboard
-                    if (statusCardManager != null && currentPropertyCard.PropertyData != null)
-                    {
-                        statusCardManager.UpdatePropertyStatus(currentPropertyCard.PropertyData.Title, newStatus);
-                    }
-                    
-                    System.Diagnostics.Debug.WriteLine($"Status updated to: {newStatus}");
+                    newStatus = updateControl.availabilityCmb.SelectedItem?.ToString() ?? 
+                               updateControl.availabilityCmb.Items[updateControl.availabilityCmb.SelectedIndex]?.ToString() ?? 
+                               "Available";
+                }
+
+                // Get Room Type
+                string roomType = updateControl.updTypeCmb.SelectedItem?.ToString() ?? updateControl.updTypeCmb.Text?.Trim();
+                
+                // Collect images and convert to base64 for web display
+                List<string> imageList = new List<string>();
+                if (!string.IsNullOrEmpty(updatedData.Image1Path)) 
+                {
+                    string base64Image1 = ImageBase64Helper.ConvertImageToBase64(updatedData.Image1Path);
+                    if (!string.IsNullOrEmpty(base64Image1)) imageList.Add(base64Image1);
+                }
+                if (!string.IsNullOrEmpty(updatedData.Image2Path)) 
+                {
+                    string base64Image2 = ImageBase64Helper.ConvertImageToBase64(updatedData.Image2Path);
+                    if (!string.IsNullOrEmpty(base64Image2)) imageList.Add(base64Image2);
+                }
+                if (!string.IsNullOrEmpty(updatedData.Image3Path)) 
+                {
+                    string base64Image3 = ImageBase64Helper.ConvertImageToBase64(updatedData.Image3Path);
+                    if (!string.IsNullOrEmpty(base64Image3)) imageList.Add(base64Image3);
+                }
+                if (!string.IsNullOrEmpty(updatedData.Image4Path)) 
+                {
+                    string base64Image4 = ImageBase64Helper.ConvertImageToBase64(updatedData.Image4Path);
+                    if (!string.IsNullOrEmpty(base64Image4)) imageList.Add(base64Image4);
                 }
                 
-                // Force card to refresh its display
-                currentPropertyCard.Invalidate();
-                currentPropertyCard.Refresh();
+                string primaryImageUrl = imageList.Count > 0 ? imageList[0] : string.Empty;
+                
+                // Build full description
+                string fullDescription = updatedData.Bathrooms ?? "";
+                if (imageList.Count > 1)
+                {
+                    string additionalImages = string.Join(", ", imageList.Skip(1));
+                    if (!string.IsNullOrEmpty(fullDescription))
+                        fullDescription += $" | Additional Images: {additionalImages}";
+                    else
+                        fullDescription = $"Additional Images: {additionalImages}";
+                }
+
+                // Create UpdateCondoDto
+                UpdateCondoDto updateDto = new UpdateCondoDto
+                {
+                    Name = updatedData.Title,
+                    Location = updatedData.Location,
+                    Description = fullDescription,
+                    Amenities = updatedData.Bedrooms ?? string.Empty,
+                    MaxGuests = 4, // Default
+                    PricePerNight = pricePerNight,
+                    ImageUrl = primaryImageUrl,
+                    Status = newStatus
+                };
+
+                // Call API to update condo
+                using (var apiService = new ApiService())
+                {
+                    await apiService.UpdateCondoAsync(condoId, updateDto);
+                    
+                    // Update status separately if changed
+                    if (newStatus != (originalPropertyData?.Status ?? "Available"))
+                    {
+                        await apiService.UpdateCondoStatusAsync(condoId, newStatus);
+                    }
+                }
+
+                // Reload all properties from API to ensure consistency
+                // Access PropertyFormManager through parentForm if needed
+                if (parentForm is Principal principal && principal.propertyFormManager != null)
+                {
+                    await principal.propertyFormManager.LoadPropertiesFromApiAsync();
+                }
 
                 MessageBox.Show("Property updated successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Close the form (close updPropertiesFirst if still open, otherwise updProperties4)
+                // Close the form
                 if (updateControl.updPropertiesFirst.Visible)
                 {
                     HideFormWithAnimation(updateControl.updPropertiesFirst);
@@ -178,16 +284,17 @@ namespace Regalia_Front_End
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"Exception in UpdateProperty: {ex.Message}\n{ex.StackTrace}");
                 MessageBox.Show($"Error updating property: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void DeleteProperty()
+        public async Task DeletePropertyAsync()
         {
             try
             {
-                if (currentPropertyCard == null)
+                if (currentPropertyCard == null || currentPropertyCard.CondoId == 0)
                 {
                     MessageBox.Show("No property selected for deletion.", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -206,17 +313,19 @@ namespace Regalia_Front_End
                     return;
                 }
 
-                // Get a reference to the card before removing it
-                PropertyCard cardToDelete = currentPropertyCard;
-                string unitName = cardToDelete.PropertyData?.Title ?? "";
+                int condoId = currentPropertyCard.CondoId;
+                string unitName = currentPropertyCard.PropertyData?.Title ?? "";
 
-                // Remove the property card from the manager
-                cardManager.RemovePropertyCard(cardToDelete);
-
-                // Remove the property status card from dashboard
-                if (statusCardManager != null && !string.IsNullOrEmpty(unitName))
+                // Call API to delete condo
+                using (var apiService = new ApiService())
                 {
-                    statusCardManager.RemovePropertyStatusCardByUnitName(unitName);
+                    await apiService.DeleteCondoAsync(condoId);
+                }
+
+                // Reload all properties from API to ensure consistency
+                if (parentForm is Principal principal && principal.propertyFormManager != null)
+                {
+                    await principal.propertyFormManager.LoadPropertiesFromApiAsync();
                 }
 
                 // Clear current property card reference
@@ -226,7 +335,7 @@ namespace Regalia_Front_End
                 MessageBox.Show("Property deleted successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Close the update form (close updPropertiesFirst if it's still open)
+                // Close the update form
                 if (updateControl.updPropertiesFirst.Visible)
                 {
                     HideFormWithAnimation(updateControl.updPropertiesFirst);
@@ -238,6 +347,7 @@ namespace Regalia_Front_End
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"Exception in DeleteProperty: {ex.Message}\n{ex.StackTrace}");
                 MessageBox.Show($"Error deleting property: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -285,11 +395,12 @@ namespace Regalia_Front_End
 
         private void LoadPropertyDataIntoForm(PropertyData data)
         {
-            // Load data into updPropertiesFirst (status)
             isLoadingData = true; // Prevent event handler from firing during load
-            if (currentPropertyCard != null)
+            
+            try
             {
-                string status = currentPropertyCard.Status ?? "Available";
+                // Load data into updPropertiesFirst (status)
+                string status = data.Status ?? currentPropertyCard?.Status ?? "Available";
                 int statusIndex = updateControl.availabilityCmb.Items.IndexOf(status);
                 if (statusIndex >= 0)
                 {
@@ -297,48 +408,134 @@ namespace Regalia_Front_End
                 }
                 else
                 {
-                    // If status not found, default to Available
-                    updateControl.availabilityCmb.SelectedIndex = 0;
+                    updateControl.availabilityCmb.SelectedIndex = 0; // Default to Available
                 }
-            }
-            else
-            {
-                updateControl.availabilityCmb.SelectedIndex = 0; // Default to Available
-            }
-            isLoadingData = false;
-            
-            // Load data into updProperties1 (basic info)
-            updateControl.updNameTxt.Text = data.Title ?? ""; // Unit Name/No.
-            updateControl.updLocationTxt.Text = data.Location ?? ""; // Location
-            updateControl.updPriceTxt.Text = data.Price ?? ""; // Price
+                
+                // Load booking link
+                updateControl.txtBookingLink.Text = data.BookingLink ?? "";
+                
+                // Load data into updProperties1 (basic info)
+                updateControl.updNameTxt.Text = data.Title ?? ""; // Unit Name/No.
+                updateControl.updLocationTxt.Text = data.Location ?? ""; // Location
+                updateControl.updPriceTxt.Text = data.Price ?? ""; // Price
 
-            // Set combo box selection for Room Type
-            if (!string.IsNullOrEmpty(data.Location))
-            {
-                int index = updateControl.updTypeCmb.Items.IndexOf(data.Location);
-                if (index >= 0)
+                // Extract Room Type, Check-in, Check-out from Description
+                string description = data.Bathrooms ?? ""; // Description is stored in Bathrooms field
+                string roomType = "";
+                string checkIn = "";
+                string checkOut = "";
+                
+                // Parse description: "Room Type: Studio Type - Test | Check-in: 9:30am | Check-out: 12:30pm | Additional Images: ..."
+                if (!string.IsNullOrEmpty(description))
                 {
-                    updateControl.updTypeCmb.SelectedIndex = index;
+                    // Extract Room Type
+                    if (description.Contains("Room Type:"))
+                    {
+                        int roomTypeStart = description.IndexOf("Room Type:") + 10;
+                        int roomTypeEnd = description.IndexOf(" - ", roomTypeStart);
+                        if (roomTypeEnd < 0) roomTypeEnd = description.IndexOf(" | ", roomTypeStart);
+                        if (roomTypeEnd < 0) roomTypeEnd = description.Length;
+                        if (roomTypeEnd > roomTypeStart)
+                        {
+                            roomType = description.Substring(roomTypeStart, roomTypeEnd - roomTypeStart).Trim();
+                        }
+                    }
+                    
+                    // Extract Check-in
+                    if (description.Contains("Check-in:"))
+                    {
+                        int checkInStart = description.IndexOf("Check-in:") + 9;
+                        int checkInEnd = description.IndexOf(" | ", checkInStart);
+                        if (checkInEnd < 0) checkInEnd = description.IndexOf("Check-out:", checkInStart);
+                        if (checkInEnd < 0) checkInEnd = description.Length;
+                        if (checkInEnd > checkInStart)
+                        {
+                            checkIn = description.Substring(checkInStart, checkInEnd - checkInStart).Trim();
+                        }
+                    }
+                    
+                    // Extract Check-out
+                    if (description.Contains("Check-out:"))
+                    {
+                        int checkOutStart = description.IndexOf("Check-out:") + 10;
+                        int checkOutEnd = description.IndexOf(" | ", checkOutStart);
+                        if (checkOutEnd < 0) checkOutEnd = description.IndexOf("Additional Images:", checkOutStart);
+                        if (checkOutEnd < 0) checkOutEnd = description.Length;
+                        if (checkOutEnd > checkOutStart)
+                        {
+                            checkOut = description.Substring(checkOutStart, checkOutEnd - checkOutStart).Trim();
+                        }
+                    }
+                    
+                    // Extract main description (after Room Type and before Check-in)
+                    string mainDesc = description;
+                    if (description.Contains("Room Type:"))
+                    {
+                        int descStart = description.IndexOf(" - ", description.IndexOf("Room Type:"));
+                        if (descStart >= 0)
+                        {
+                            descStart += 3; // Skip " - "
+                            int descEnd = description.IndexOf(" | ", descStart);
+                            if (descEnd < 0) descEnd = description.IndexOf("Check-in:", descStart);
+                            if (descEnd < 0) descEnd = description.IndexOf("Additional Images:", descStart);
+                            if (descEnd < 0) descEnd = description.Length;
+                            if (descEnd > descStart)
+                            {
+                                mainDesc = description.Substring(descStart, descEnd - descStart).Trim();
+                            }
+                        }
+                    }
+                    else if (description.Contains("Check-in:"))
+                    {
+                        int descEnd = description.IndexOf("Check-in:");
+                        if (descEnd > 0)
+                        {
+                            mainDesc = description.Substring(0, descEnd).Trim();
+                        }
+                    }
+                    
+                    updateControl.updDescTxt.Text = mainDesc;
                 }
                 else
                 {
-                    updateControl.updTypeCmb.Text = data.Location;
+                    updateControl.updDescTxt.Text = "";
                 }
+
+                // Set Room Type combo box
+                if (!string.IsNullOrEmpty(roomType))
+                {
+                    int index = updateControl.updTypeCmb.Items.IndexOf(roomType);
+                    if (index >= 0)
+                    {
+                        updateControl.updTypeCmb.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        updateControl.updTypeCmb.Text = roomType;
+                    }
+                }
+
+                // Set Check-in and Check-out
+                updateControl.updInTxt.Text = checkIn;
+                updateControl.updOutTxt.Text = checkOut;
+
+                // Load data into updProperties2 (additional details)
+                updateControl.updRuleTxt.Text = data.Bedrooms ?? ""; // Rules/Amenities field
+
+                // Load images into ImageManager
+                if (!string.IsNullOrEmpty(data.Image1Path))
+                    imageManager.LoadImage(1, data.Image1Path);
+                if (!string.IsNullOrEmpty(data.Image2Path))
+                    imageManager.LoadImage(2, data.Image2Path);
+                if (!string.IsNullOrEmpty(data.Image3Path))
+                    imageManager.LoadImage(3, data.Image3Path);
+                if (!string.IsNullOrEmpty(data.Image4Path))
+                    imageManager.LoadImage(4, data.Image4Path);
             }
-
-            // Load data into updProperties2 (additional details)
-            updateControl.updDescTxt.Text = data.Bedrooms ?? ""; // Description field (Bedrooms data)
-            updateControl.updRuleTxt.Text = data.Bathrooms ?? ""; // Rules field (Bathrooms data)
-
-            // Load images into ImageManager
-            if (!string.IsNullOrEmpty(data.Image1Path))
-                imageManager.LoadImage(1, data.Image1Path);
-            if (!string.IsNullOrEmpty(data.Image2Path))
-                imageManager.LoadImage(2, data.Image2Path);
-            if (!string.IsNullOrEmpty(data.Image3Path))
-                imageManager.LoadImage(3, data.Image3Path);
-            if (!string.IsNullOrEmpty(data.Image4Path))
-                imageManager.LoadImage(4, data.Image4Path);
+            finally
+            {
+                isLoadingData = false;
+            }
         }
 
         private PropertyData CollectFormData()
@@ -350,12 +547,42 @@ namespace Regalia_Front_End
             data.Location = updateControl.updLocationTxt.Text?.Trim(); // Location
             data.Price = updateControl.updPriceTxt.Text?.Trim(); // Price
             
-            // Room Type from combo box (if needed)
+            // Room Type from combo box
             string roomType = updateControl.updTypeCmb.SelectedItem?.ToString() ?? updateControl.updTypeCmb.Text?.Trim();
+            
+            // Check-in and Check-out times
+            string checkIn = updateControl.updInTxt.Text?.Trim() ?? string.Empty;
+            string checkOut = updateControl.updOutTxt.Text?.Trim() ?? string.Empty;
 
             // Collect data from updProperties2 (additional details)
-            data.Bedrooms = updateControl.updDescTxt.Text?.Trim(); // Description field (Bedrooms data)
-            data.Bathrooms = updateControl.updRuleTxt.Text?.Trim(); // Rules field (Bathrooms data)
+            string mainDescription = updateControl.updDescTxt.Text?.Trim() ?? ""; // Description
+            data.Bedrooms = updateControl.updRuleTxt.Text?.Trim() ?? ""; // Rules/Amenities field
+
+            // Build full description with Room Type, Check-in, Check-out
+            string fullDescription = mainDescription;
+            if (!string.IsNullOrEmpty(roomType))
+            {
+                if (string.IsNullOrEmpty(fullDescription))
+                    fullDescription = $"Room Type: {roomType}";
+                else
+                    fullDescription = $"Room Type: {roomType} - {fullDescription}";
+            }
+            
+            if (!string.IsNullOrEmpty(checkIn) || !string.IsNullOrEmpty(checkOut))
+            {
+                string checkTimes = string.Empty;
+                if (!string.IsNullOrEmpty(checkIn))
+                    checkTimes += $"Check-in: {checkIn}";
+                if (!string.IsNullOrEmpty(checkOut))
+                    checkTimes += (!string.IsNullOrEmpty(checkTimes) ? " | " : "") + $"Check-out: {checkOut}";
+                
+                if (string.IsNullOrEmpty(fullDescription))
+                    fullDescription = checkTimes;
+                else
+                    fullDescription += $" | {checkTimes}";
+            }
+            
+            data.Bathrooms = fullDescription; // Store full description in Bathrooms field
 
             // Collect image paths from ImageManager
             data.Image1Path = imageManager.GetImagePath(1);
@@ -365,6 +592,10 @@ namespace Regalia_Front_End
 
             // Set default area if not provided
             data.Area = originalPropertyData?.Area ?? "N/A";
+            
+            // Preserve CondoId and Status
+            data.CondoId = originalPropertyData?.CondoId ?? 0;
+            data.Status = originalPropertyData?.Status ?? "Available";
 
             return data;
         }
