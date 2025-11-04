@@ -68,10 +68,9 @@
             this.guna2Panel1.BorderRadius = 10;
             this.guna2Panel1.Controls.Add(this.label5);
             this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel1.Location = new System.Drawing.Point(25, 157);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2Panel1.Location = new System.Drawing.Point(38, 242);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(328, 266);
+            this.guna2Panel1.Size = new System.Drawing.Size(492, 409);
             this.guna2Panel1.TabIndex = 0;
             this.guna2Panel1.Visible = false;
             // 
@@ -81,10 +80,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(13, 8);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(20, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 18);
+            this.label5.Size = new System.Drawing.Size(165, 26);
             this.label5.TabIndex = 0;
             this.label5.Text = "Revenue Graph";
             // 
@@ -95,10 +93,9 @@
             this.propertyStatusOver.BorderRadius = 10;
             this.propertyStatusOver.Controls.Add(this.label6);
             this.propertyStatusOver.FillColor = System.Drawing.Color.Transparent;
-            this.propertyStatusOver.Location = new System.Drawing.Point(25, 157);
-            this.propertyStatusOver.Margin = new System.Windows.Forms.Padding(2);
+            this.propertyStatusOver.Location = new System.Drawing.Point(38, 242);
             this.propertyStatusOver.Name = "propertyStatusOver";
-            this.propertyStatusOver.Size = new System.Drawing.Size(555, 266);
+            this.propertyStatusOver.Size = new System.Drawing.Size(862, 409);
             this.propertyStatusOver.TabIndex = 1;
             // 
             // label6
@@ -107,10 +104,9 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(9, 8);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(14, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(137, 18);
+            this.label6.Size = new System.Drawing.Size(206, 26);
             this.label6.TabIndex = 0;
             this.label6.Text = "Available Properties";
             // 
@@ -122,10 +118,9 @@
             this.guna2Panel3.Controls.Add(this.totalBooking);
             this.guna2Panel3.Controls.Add(this.label10);
             this.guna2Panel3.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Panel3.Location = new System.Drawing.Point(25, 45);
-            this.guna2Panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2Panel3.Location = new System.Drawing.Point(38, 69);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(123, 72);
+            this.guna2Panel3.Size = new System.Drawing.Size(195, 111);
             this.guna2Panel3.TabIndex = 2;
             // 
             // label1
@@ -133,10 +128,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(44, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(72, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(106, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Total Booking";
             // 
@@ -146,10 +140,9 @@
             this.totalBooking.BackColor = System.Drawing.Color.Transparent;
             this.totalBooking.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalBooking.ForeColor = System.Drawing.Color.White;
-            this.totalBooking.Location = new System.Drawing.Point(74, 28);
-            this.totalBooking.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.totalBooking.Location = new System.Drawing.Point(111, 40);
             this.totalBooking.Name = "totalBooking";
-            this.totalBooking.Size = new System.Drawing.Size(25, 26);
+            this.totalBooking.Size = new System.Drawing.Size(36, 38);
             this.totalBooking.TabIndex = 1;
             this.totalBooking.Text = "0";
             // 
@@ -159,10 +152,9 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(2, 13);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(3, 20);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 44);
+            this.label10.Size = new System.Drawing.Size(88, 65);
             this.label10.TabIndex = 3;
             this.label10.Text = "📋";
             // 
@@ -174,10 +166,9 @@
             this.guna2Panel4.Controls.Add(this.label2);
             this.guna2Panel4.Controls.Add(this.label8);
             this.guna2Panel4.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Panel4.Location = new System.Drawing.Point(170, 45);
-            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2Panel4.Location = new System.Drawing.Point(257, 69);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(123, 72);
+            this.guna2Panel4.Size = new System.Drawing.Size(195, 111);
             this.guna2Panel4.TabIndex = 3;
             // 
             // totalAvailable
@@ -186,10 +177,9 @@
             this.totalAvailable.BackColor = System.Drawing.Color.Transparent;
             this.totalAvailable.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalAvailable.ForeColor = System.Drawing.Color.White;
-            this.totalAvailable.Location = new System.Drawing.Point(76, 28);
-            this.totalAvailable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.totalAvailable.Location = new System.Drawing.Point(114, 40);
             this.totalAvailable.Name = "totalAvailable";
-            this.totalAvailable.Size = new System.Drawing.Size(25, 26);
+            this.totalAvailable.Size = new System.Drawing.Size(36, 38);
             this.totalAvailable.TabIndex = 1;
             this.totalAvailable.Text = "0";
             // 
@@ -198,10 +188,9 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(64, 15);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(97, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.Size = new System.Drawing.Size(72, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Available";
             // 
@@ -211,10 +200,9 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(2, 15);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(3, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 44);
+            this.label8.Size = new System.Drawing.Size(88, 65);
             this.label8.TabIndex = 3;
             this.label8.Text = "✅";
             // 
@@ -226,10 +214,9 @@
             this.guna2Panel5.Controls.Add(this.label3);
             this.guna2Panel5.Controls.Add(this.label9);
             this.guna2Panel5.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Panel5.Location = new System.Drawing.Point(314, 45);
-            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2Panel5.Location = new System.Drawing.Point(480, 69);
             this.guna2Panel5.Name = "guna2Panel5";
-            this.guna2Panel5.Size = new System.Drawing.Size(123, 72);
+            this.guna2Panel5.Size = new System.Drawing.Size(195, 111);
             this.guna2Panel5.TabIndex = 4;
             // 
             // totalOccupied
@@ -238,10 +225,9 @@
             this.totalOccupied.BackColor = System.Drawing.Color.Transparent;
             this.totalOccupied.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalOccupied.ForeColor = System.Drawing.Color.White;
-            this.totalOccupied.Location = new System.Drawing.Point(69, 28);
-            this.totalOccupied.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.totalOccupied.Location = new System.Drawing.Point(104, 40);
             this.totalOccupied.Name = "totalOccupied";
-            this.totalOccupied.Size = new System.Drawing.Size(25, 26);
+            this.totalOccupied.Size = new System.Drawing.Size(36, 38);
             this.totalOccupied.TabIndex = 1;
             this.totalOccupied.Text = "0";
             // 
@@ -250,10 +236,9 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(57, 11);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(86, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(76, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Occupied";
             // 
@@ -263,10 +248,9 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(2, 15);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(3, 20);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 44);
+            this.label9.Size = new System.Drawing.Size(88, 65);
             this.label9.TabIndex = 3;
             this.label9.Text = "❎";
             // 
@@ -276,10 +260,9 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(2, 13);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(3, 20);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 44);
+            this.label7.Size = new System.Drawing.Size(88, 65);
             this.label7.TabIndex = 2;
             this.label7.Text = "🏢";
             // 
@@ -288,10 +271,9 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(44, 11);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(66, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.Size = new System.Drawing.Size(120, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Total Properties";
             // 
@@ -301,10 +283,9 @@
             this.totalProperty.BackColor = System.Drawing.Color.Transparent;
             this.totalProperty.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalProperty.ForeColor = System.Drawing.Color.White;
-            this.totalProperty.Location = new System.Drawing.Point(74, 28);
-            this.totalProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.totalProperty.Location = new System.Drawing.Point(111, 40);
             this.totalProperty.Name = "totalProperty";
-            this.totalProperty.Size = new System.Drawing.Size(25, 26);
+            this.totalProperty.Size = new System.Drawing.Size(36, 38);
             this.totalProperty.TabIndex = 1;
             this.totalProperty.Text = "1";
             // 
@@ -316,10 +297,9 @@
             this.guna2Panel6.Controls.Add(this.label4);
             this.guna2Panel6.Controls.Add(this.label7);
             this.guna2Panel6.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Panel6.Location = new System.Drawing.Point(457, 45);
-            this.guna2Panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.guna2Panel6.Location = new System.Drawing.Point(705, 69);
             this.guna2Panel6.Name = "guna2Panel6";
-            this.guna2Panel6.Size = new System.Drawing.Size(123, 72);
+            this.guna2Panel6.Size = new System.Drawing.Size(195, 111);
             this.guna2Panel6.TabIndex = 5;
             this.guna2Panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel6_Paint);
             // 
@@ -345,7 +325,7 @@
             // 
             // DashBoardControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.guna2Panel6);
@@ -354,9 +334,8 @@
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.propertyStatusOver);
             this.Controls.Add(this.guna2Panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DashBoardControl";
-            this.Size = new System.Drawing.Size(602, 436);
+            this.Size = new System.Drawing.Size(903, 671);
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             this.propertyStatusOver.ResumeLayout(false);
