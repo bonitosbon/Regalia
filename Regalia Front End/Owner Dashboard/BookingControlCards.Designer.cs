@@ -44,10 +44,9 @@
             this.bookingName.BackColor = System.Drawing.Color.Transparent;
             this.bookingName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookingName.ForeColor = System.Drawing.Color.White;
-            this.bookingName.Location = new System.Drawing.Point(42, 15);
-            this.bookingName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bookingName.Location = new System.Drawing.Point(32, 12);
             this.bookingName.Name = "bookingName";
-            this.bookingName.Size = new System.Drawing.Size(90, 31);
+            this.bookingName.Size = new System.Drawing.Size(72, 25);
             this.bookingName.TabIndex = 0;
             this.bookingName.Text = "Name";
             // 
@@ -57,10 +56,9 @@
             this.bookingUnitName.BackColor = System.Drawing.Color.Transparent;
             this.bookingUnitName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookingUnitName.ForeColor = System.Drawing.Color.White;
-            this.bookingUnitName.Location = new System.Drawing.Point(44, 48);
-            this.bookingUnitName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bookingUnitName.Location = new System.Drawing.Point(33, 39);
             this.bookingUnitName.Name = "bookingUnitName";
-            this.bookingUnitName.Size = new System.Drawing.Size(57, 24);
+            this.bookingUnitName.Size = new System.Drawing.Size(46, 18);
             this.bookingUnitName.TabIndex = 0;
             this.bookingUnitName.Text = "Unit #";
             // 
@@ -70,10 +68,9 @@
             this.bookingIcon.BackColor = System.Drawing.Color.Transparent;
             this.bookingIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookingIcon.ForeColor = System.Drawing.Color.White;
-            this.bookingIcon.Location = new System.Drawing.Point(253, 34);
-            this.bookingIcon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bookingIcon.Location = new System.Drawing.Point(190, 28);
             this.bookingIcon.Name = "bookingIcon";
-            this.bookingIcon.Size = new System.Drawing.Size(31, 24);
+            this.bookingIcon.Size = new System.Drawing.Size(25, 18);
             this.bookingIcon.TabIndex = 0;
             this.bookingIcon.Text = "📆";
             // 
@@ -87,10 +84,9 @@
             this.bookingDate.BackColor = System.Drawing.Color.Transparent;
             this.bookingDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookingDate.ForeColor = System.Drawing.Color.White;
-            this.bookingDate.Location = new System.Drawing.Point(292, 34);
-            this.bookingDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bookingDate.Location = new System.Drawing.Point(219, 28);
             this.bookingDate.Name = "bookingDate";
-            this.bookingDate.Size = new System.Drawing.Size(48, 24);
+            this.bookingDate.Size = new System.Drawing.Size(39, 18);
             this.bookingDate.TabIndex = 0;
             this.bookingDate.Text = "Date";
             // 
@@ -100,10 +96,9 @@
             this.statusDot.AutoSize = true;
             this.statusDot.BackColor = System.Drawing.Color.Transparent;
             this.statusDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusDot.Location = new System.Drawing.Point(895, 33);
-            this.statusDot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.statusDot.Location = new System.Drawing.Point(671, 27);
             this.statusDot.Name = "statusDot";
-            this.statusDot.Size = new System.Drawing.Size(25, 25);
+            this.statusDot.Size = new System.Drawing.Size(20, 20);
             this.statusDot.TabIndex = 1;
             this.statusDot.Text = "●";
             // 
@@ -114,16 +109,15 @@
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
             this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusLabel.ForeColor = System.Drawing.Color.White;
-            this.statusLabel.Location = new System.Drawing.Point(928, 35);
-            this.statusLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.statusLabel.Location = new System.Drawing.Point(696, 28);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(60, 24);
+            this.statusLabel.Size = new System.Drawing.Size(50, 18);
             this.statusLabel.TabIndex = 1;
             this.statusLabel.Text = "Status";
             // 
             // BookingControlCards
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.statusLabel);
@@ -132,9 +126,8 @@
             this.Controls.Add(this.bookingIcon);
             this.Controls.Add(this.bookingUnitName);
             this.Controls.Add(this.bookingName);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BookingControlCards";
-            this.Size = new System.Drawing.Size(1157, 102);
+            this.Size = new System.Drawing.Size(868, 83);
             this.ResumeLayout(false);
             this.PerformLayout();
 
